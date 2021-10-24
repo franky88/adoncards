@@ -46,7 +46,7 @@ class CardAdd(models.Model):
         max_length=250, verbose_name="promotional offer")
     business_reinstatement = models.TextField()
     image = models.ForeignKey(
-        BackgroundImage, on_delete=models.SET_NULL, null=True)
+        BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme")
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
