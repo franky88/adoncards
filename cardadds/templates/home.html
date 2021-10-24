@@ -18,6 +18,7 @@
     <span>Created by: @{{card.created_by.get_username}}</span>
     <br>
     {{ card.business_name|title }} <span>{% if perms.cardadds.change_cardadd %}<a href="{% url 'cards:update-card' card.ref_code %}">Edit</a>{% endif %}</span>
+    <img src="{{ card.image.image.url }}" alt="" style="width: 100px;"> {{ card.image.name }}
     <hr>
     {% endfor %}
 </div>
