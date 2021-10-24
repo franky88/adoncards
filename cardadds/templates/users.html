@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3>Users page</h3>
+    {% if request.user.get_user_permissions %}
+        {% for user in users %}
+            {{ user }} <br>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

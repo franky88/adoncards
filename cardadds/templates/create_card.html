@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    {% if perms.cardadds.add_cardadd %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a href="{{request.META.HTTP_REFERER}}">Back</a>
+            <input type="submit" value="Submit">
+        </form>
+    {% else %}
+        <strong>Ask your app administrator for access.</strong>
+    {% endif %}
+{% else %}
+{% include "login.html" %}
+{% endif %}
+
+{% endblock %}
