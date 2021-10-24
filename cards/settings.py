@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-jr&clgdf3+sjhxp*8sg3ru7-=via7z7=&8c_64cq1leh2=h!(g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://adongroupcards.herokuapp.com/"]
+ALLOWED_HOSTS = ["https://adongroupcards.herokuapp.com"]
 
 
 # Application definition
