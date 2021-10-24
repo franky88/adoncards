@@ -7,7 +7,7 @@ class CardAddForm(forms.ModelForm):
     class Meta:
         model = CardAdd
         fields = [
-            "category",
+            # "category",
             "business_name",
             "title",
             "content",
