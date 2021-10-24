@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cardadds.apps.CardaddsConfig',
-    'storages'
+    'storages',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +85,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(
+#     conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -147,3 +148,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

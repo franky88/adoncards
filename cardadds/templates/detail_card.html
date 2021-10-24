@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.img-card-main {
+			width: 409px;
+			height: 500px;
+			background-color: skyblue;
+			margin:  auto;
+		}
+		.title {
+			font-size: 45px;
+			font-family: 'Ephesis';
+			padding: 70px 20px 20px 20px;
+			color:  yellow;
+			line-height: 1;
+		}
+		.content {
+			padding: 0 70px 0 20px;
+			text-align: center;
+			font-size: 21px;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<div class="img-card-main" style="background: url('{{instance.image.image.url}}'); background-repeat: no-repeat; background-position: center; background-size: contain;">
+		<div class="title">
+			<strong>
+				{{instance.title|title}}
+			</strong> 
+		</div>
+		<div class="content">
+			<p>
+				We would like to wish all our valuable customers a Merry Christmas and Happy New Year and Holiday Season!
+			</p>
+		</div>	
+	</div>
+</body>
+</html>

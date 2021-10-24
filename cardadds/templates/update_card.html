@@ -1,19 +1,38 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-{% if request.user.is_authenticated %}
-    {% if perms.cardadds.add_cardadd %}
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <a href="{{request.META.HTTP_REFERER}}">Back</a>
-            <input type="submit" value="Submit">
-        </form>
-    {% else %}
-        <strong>Ask your app administrator for access.</strong>
-    {% endif %}
-{% else %}
-{% include "login.html" %}
-{% endif %}
+<div class="row">
+    <div class="col-sm-4">
+        {% if request.user.is_authenticated %}
+        {% if perms.cardadds.add_cardadd %}
+        <div class="card">
+            <div class="card-header">
+                <strong>{{title|title}}</strong>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    {{ form|crispy }}
+                </div>
+                <div class="card-footer">
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary btn-sm">Back</a>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm float-right">
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-body">
+                <strong>Ask your app administrator for access.</strong>
+            </div>
+        </div>
+        {% endif %}
+        {% else %}
+        {% include "login.html" %}
+        {% endif %}
+    </div>
+</div>
+<br>
+
 
 {% endblock %}
