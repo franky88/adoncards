@@ -41,11 +41,14 @@ class CardAdd(models.Model):
     ref_code = models.CharField(max_length=12, unique=True, blank=True)
     category = models.ForeignKey(CardCategory, on_delete=SET_NULL, null=True)
     business_name = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
-    content = models.TextField(verbose_name="message content")
+    title = models.CharField(
+        max_length=200, default="Merry Christmas Happy New Year")
+    content = models.TextField(verbose_name="message content",
+                               default="We would like to wish all our valuable customers a Merry Christmas and Happy New Year and Holiday Season!")
     promotion = models.CharField(
-        max_length=250, verbose_name="promotional offer")
-    business_reinstatement = models.TextField()
+        max_length=250, verbose_name="promotional offer", default="up to 30% off")
+    business_reinstatement = models.TextField(
+        default="We will be closed for the Christmas Season From 24th December to the 2nd January")
     image = models.ForeignKey(
         BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme")
     card_link = models.CharField(max_length=200, null=True, blank=True)
@@ -63,11 +66,6 @@ class CardAdd(models.Model):
 def post_save_card_create_ref_code(sender, instance, created, *args, **kwargs):
     if created:
         instance.ref_code = str(uuid.uuid4()).replace('-', '')[:12]
-        instance.save()
-
-
-@receiver(pre_save, sender=CardAdd)
-def pre_save_card_link(sender, instance, *args, **kwargs):
-    if instance.card_link == None:
-        link = "http://localhost:8000/cards/details/%s" % (instance.ref_code)
+        link = "http://localhost:8000/cards/card-link/%s" % (instance.ref_code)
         instance.card_link = link
+        instance.save()

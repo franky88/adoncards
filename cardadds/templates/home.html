@@ -6,6 +6,7 @@
       <li class="breadcrumb-item"><a href="{% url 'cards:home' %}">Card List</a></li>
     </ol>
 </nav>
+{% include 'messages.html' %}
 <div>
     {% if request.user.is_authenticated %}
         {% if perms.cardadds.add_cardadd %}
@@ -18,21 +19,58 @@
     {% endif %}
     <h3>Card List</h3>
     <hr>
-    <div class="row row-cols-1 row-cols-md-4">
-        {% for card in cards %}
-        <a href="{% url 'cards:card-details' card.ref_code %}" target="_blank">
-            <div class="col mb-4">
-                <div class="card bg-dark text-white">
-                    <img src="{{ card.image.image.url }}" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                      <h5 class="card-title">{{ card.business_name|title }}</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text">{{ card.ref_code }}</p>
-                    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-hover" id="cards">
+                        <thead>
+                            <tr>
+                                <th>Theme</th>
+                                <th>Business name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for card in cards %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'cards:card-details' card.ref_code %}"><img src="{{card.image.image.url}}" alt="" style="width: 100px"></a>
+                                </td>
+                                <td>
+                                    <p>
+                                        <a href="{% url 'cards:card-details' card.ref_code %}">{{ card.business_name|title }}</a> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
+                                        <small>{{ card.title|title }}</small> <br>
+                                        <small class="text-muted">Link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{card.card_link}}</a></small> <br>
+                                        <small class="text-muted">Date created: {{ card.created }} | Updated: {{card.updated}}</small>
+                                    </p>
+                                </td>
+                                <td>
+                                    <div>
+                                        <a href="">Edit</a> |
+                                        <a href="">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </a>
-        {% endfor %}
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Categories</strong>
+                </div>
+                <div class="card-body">
+                    {% for cat in categories %}
+                        {{ cat.category_name }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
+    <br>
 </div>
 {% endblock %}
