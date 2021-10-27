@@ -9,6 +9,7 @@ import uuid
 import base64
 import io
 from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
 # Create your models here.
 
 
@@ -18,8 +19,9 @@ def save_image_location(instance, filename):
 
 
 class BackgroundImage(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to=save_image_location)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    image = models.ImageField(
+        upload_to=save_image_location, blank=True, null=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -56,7 +58,6 @@ class CardAdd(models.Model):
     image = models.ForeignKey(
         BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme")
     card_link = models.CharField(max_length=200, null=True, blank=True)
-    base64 = models.TextField(null=True, blank=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -66,22 +67,24 @@ class CardAdd(models.Model):
     def __str__(self):
         return self.business_name
 
+    def image_url(self):
+        with open(self.image.image.path, 'rb') as imageFile:
+            string = base64.b64encode(imageFile.read())
+            print(str(string))
+            # return string
+        with open(self.image.image, "wb") as fh:
+            fh.write(str.decode('base64'))
+            return fh
 
-# def base64_file(data, name=None):
-#     _format, _img_str = data.split(';base64,')
-#     _name, ext = _format.split('/')
-#     if not name:
-#         name = _name.split(":")[-1]
-#     return ContentFile(base64.b64decode(_img_str), name='{}.{}'.format(name, ext))
 
-def decodeDesignImage(data):
-    try:
-        data = base64.b64decode(data.encode('UTF-8'))
-        buf = io.BytesIO(data)
-        img = Image.open(buf)
-        return img
-    except:
-        return None
+# def decodeDesignImage(data):
+#     try:
+#         data = base64.b64encode(data.encode('UTF-8'))
+#         buf = io.BytesIO(data)
+#         img = Image.open(buf)
+#         return img
+#     except:
+#         return None
 
 
 @receiver(post_save, sender=CardAdd)
@@ -93,9 +96,13 @@ def post_save_card_create_ref_code(sender, instance, created, *args, **kwargs):
         instance.save()
 
 
-@receiver(pre_save, sender=CardAdd)
-def pre_save_base64_text(sender, instance, *args, **kwargs):
-    if instance.base64 == "":
-        base64_img = CardAdd.objects.create(
-            decodeDesignImage(instance.image.image))
-        instance.base64 = base64_img
+# @receiver(pre_save, sender=BackgroundImage)
+# def pre_save_base64_text(sender, instance, *args, **kwargs):
+#     if instance.base64 == "":
+#         img = decodeDesignImage(instance.image)
+#         img_io = io.BytesIO()
+#         img.save(img_io, format='JPEG')
+#         instance.base64 = InMemoryUploadedFile(
+#             img_io, field_name=None, name=instance.name+instance.id+".jpg", content_type='image/jpeg', size=img_io.tell, charset=None)
+        # instance.save()
+        # instance.base64 = str(imgb64)

@@ -135,8 +135,8 @@
     {% if instance.image.name == "Christmas theme 1" %}
     <span hidden id="ref-code">{{ instance.ref_code }}</span>
     <span hidden id="business-name">{{ instance.business_name }}</span>
-    <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
-    <div id="img-card-main">
+    <img hidden src="{{ instance.image.image }}" alt="" id="img">
+    <canvas id="img-card-main">
 		<div class="title">
 			<strong>
 				{{instance.title|title}}
@@ -155,10 +155,10 @@
         <div class="business_reinstatement">
             <small>{{instance.business_reinstatement}}</small>
         </div>
-	</div>
+	</canvas>
     {% endif %}
     {% if instance.image.name == "Christmas theme 2" %}
-	<div id="img-card-main">
+	<canvas id="img-card-main">
 		<span hidden id="ref-code">{{ instance.ref_code }}</span>
         <span hidden id="business-name">{{ instance.business_name }}</span>
         <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
@@ -180,7 +180,7 @@
                 <small>{{instance.promotion|upper}}</small>
             </div>
         </div>
-	</div>
+	</canvas>
     {% endif %}
     <img id="img-result" src="" alt="" style="width: 100px;">
     <div class="btn">
@@ -192,7 +192,7 @@
         const refCode = document.getElementById('ref-code').textContent
         const businessName = document.getElementById('business-name').textContent
         const imgSRC = document.getElementById('img').getAttribute('src')
-        console.log(imgSRC)
+        // console.log(imgSRC)
         document.getElementById('dl-image').onclick = function() {
             const screenshotTarget = document.getElementById('img-card-main');
             console.log(refCode);
@@ -211,51 +211,63 @@
             })
             console.log('working')
         };
-        // function renderImage() {
-        //     const screenshotTarget = document.querySelector('#img-card-main');
-        //     html2canvas(screenshotTarget, {
-        //         scale: 2,
-        //         onrendered: function(canvas) {
-        //             const base64Image = canvas.toDataURL("image/jpg");
-        //             var anchor = document.createElement('a');
-        //             anchor.setAttribute('href', base64Image);
-        //             anchor.setAttribute('download', businessName+'-'+refCode+'.jpg');
-        //             anchor.click();
-        //             anchor.remove();
-        //         }
-        //     })
+        // async function loadImageToCanvas(url) {
+        //     let canvas, ctx
+        //     canvas = document.getElementById('img-card-main')
+        //     ctx = canvas.getContext('2d');
+        //     canvas.width = 409;
+        //     canvas.height = 500;
+        //     let imgObj = new Image();
+        //     imgObj.onload = function(){
+        //         let w = canvas.width;
+        //         let nw = imgObj.naturalWidth;
+        //         let nh = imgObj.naturalHeight;
+        //         let aspect = nw/nh;
+        //         let h = w /aspect;
+        //         canvas.height = h;
+        //         ctx.drawImage(imgObj, 0,0, w, h)
+        //     };
+        //     imgObj.src = imgSRC;
         // }
-        // function sample() {
-        //     console.log('im working');
-        //     const imgSrc = document.getElementById('img').getAttribute('src');
-        //     var anchor = document.createElement('a');
-        //     anchor.setAttribute('href', imgSrc);
-        //     anchor.setAttribute('download', 'sample.jpg');
-        //     var dimg = anchor.click()
-        //     console.log(dimg.toDataURL('image/jpg'));
-        // }
+
+        async function downloadImg(url) {
+            const reader = new FileReader();
+            reader.readAsDataURL(url)
+            // console.log(reader.result)
+            return new Promise((res, rej) => {
+                reader.onload = () => {
+                    // console.log(e)
+                    res(reader.result)
+                    localStorage.setItem('recent-image', reader.result);
+                }
+            })
+        }
         async function parseURI(d){
             var reader = new FileReader();    /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
             reader.readAsDataURL(d);          /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
             return new Promise((res,rej)=> {  /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
+                // console.log(res)
                 reader.onload = (e) => {        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
-                res(e.target.result)
+                    res(e.target.result)
+                    console.log("result: ", e.target.result)
+                    localStorage.setItem('recent-image', e.target.result);
                 }
             })
         } 
 
         async function getDataBlob(url){
             var res = await fetch(url, {
-                method: 'GET',
                 mode: 'no-cors',
             });
-            var blob = await res.blob();
+            console.log(res)
+            var blob = await res.blob({type: 'image/jpeg'});
+            console.log(blob)
             var uri = await parseURI(blob);
-            console.log(uri)
+            // console.log(uri)
             return uri;
         }
 
-        getDataBlob(imgSRC);
+        getDataBlob('https://i.picsum.photos/id/490/200/300.jpg?hmac=8hYDsOwzzMCthBMYMN9bM6POtrJfVAmsvamM2oOEiF4');
     </script>
 </body>
 </html>
