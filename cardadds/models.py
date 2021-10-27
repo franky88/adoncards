@@ -1,10 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import SET_NULL
+from django.core.files.base import ContentFile
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 from django.urls import reverse
 import uuid
+import base64
+import io
+from PIL import Image
 # Create your models here.
 
 
@@ -52,6 +56,7 @@ class CardAdd(models.Model):
     image = models.ForeignKey(
         BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme")
     card_link = models.CharField(max_length=200, null=True, blank=True)
+    base64 = models.TextField(null=True, blank=True)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
@@ -62,10 +67,35 @@ class CardAdd(models.Model):
         return self.business_name
 
 
+# def base64_file(data, name=None):
+#     _format, _img_str = data.split(';base64,')
+#     _name, ext = _format.split('/')
+#     if not name:
+#         name = _name.split(":")[-1]
+#     return ContentFile(base64.b64decode(_img_str), name='{}.{}'.format(name, ext))
+
+def decodeDesignImage(data):
+    try:
+        data = base64.b64decode(data.encode('UTF-8'))
+        buf = io.BytesIO(data)
+        img = Image.open(buf)
+        return img
+    except:
+        return None
+
+
 @receiver(post_save, sender=CardAdd)
 def post_save_card_create_ref_code(sender, instance, created, *args, **kwargs):
     if created:
         instance.ref_code = str(uuid.uuid4()).replace('-', '')[:12]
-        link = "http://localhost:8000/cards/card-link/%s" % (instance.ref_code)
+        link = "http://localhost:8000/card-link/%s" % (instance.ref_code)
         instance.card_link = link
         instance.save()
+
+
+@receiver(pre_save, sender=CardAdd)
+def pre_save_base64_text(sender, instance, *args, **kwargs):
+    if instance.base64 == "":
+        base64_img = CardAdd.objects.create(
+            decodeDesignImage(instance.image.image))
+        instance.base64 = base64_img

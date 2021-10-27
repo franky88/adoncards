@@ -18,3 +18,22 @@ main > .container {
 code {
   font-size: 80%;
 }
+.img-card-main {
+  width: 409px;
+  height: 500px;
+  background-color: skyblue;
+  margin: auto;
+}
+.title {
+  font-size: 45px;
+  font-family: "Ephesis";
+  padding: 70px 20px 20px 20px;
+  color: yellow;
+  line-height: 1;
+}
+.content {
+  padding: 0 70px 0 20px;
+  text-align: center;
+  font-size: 21px;
+  color: white;
+}

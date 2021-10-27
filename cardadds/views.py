@@ -3,13 +3,14 @@ from html2image import Html2Image
 from django.contrib import messages
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.admin import ModelAdmin
 from cardadds.models import CardAdd, BackgroundImage, CardCategory
 from .forms import CardAddForm
 from bs4 import BeautifulSoup
 import requests
+import base64
 # Create your views here.
 
 
@@ -58,11 +59,12 @@ def card_details(request, *args, **kwargs):
     return render(request, "detail_card.html", context)
 
 
-def card_link(request, ref_code):
-    instance = get_object_or_404(CardAdd, ref_code=ref_code)
+def card_link(request, *args, **kwargs):
+    card_code = kwargs.get('ref_code')
+    data = get_object_or_404(CardAdd, ref_code=card_code)
     context = {
         "title": "card details",
-        "instance": instance,
+        "instance": data,
         "baseURL": "http://localhost:8000"
     }
     return render(request, "card_link.html", context)
@@ -74,7 +76,7 @@ def update_card(request, ref_code):
                        request.FILES or None, instance=instance)
     if form.is_valid():
         form.save()
-        return redirect("cards:home")
+        return redirect("cards:update-card", instance.ref_code)
     context = {
         "title": "update card",
         "instance": instance,

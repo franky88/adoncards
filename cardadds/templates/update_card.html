@@ -8,9 +8,8 @@
     </ol>
 </nav>
 <div class="row">
-    <div class="col-sm-4">
-        {% if request.user.is_authenticated %}
-        {% if perms.cardadds.add_cardadd %}
+    <div class="col-sm-8">
+        {% if perms.cardadds.change_cardadd %}
         <div class="card">
             <div class="card-header">
                 <strong>{{title|title}}</strong>
@@ -18,7 +17,19 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="card-body">
-                    {{ form|crispy }}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {{ form.business_name|as_crispy_field }}
+                            {{ form.title|as_crispy_field }}
+                            {{ form.content|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-6">
+                            {{ form.promotion|as_crispy_field }}
+                            {{ form.business_reinstatement|as_crispy_field }}
+                            {{ form.image|as_crispy_field }}
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="card-footer">
                     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary btn-sm">Back</a>
@@ -33,10 +44,31 @@
             </div>
         </div>
         {% endif %}
-        {% else %}
-        {% include "login.html" %}
-        {% endif %}
     </div>
+    <div class="col-sm-4">
+        {% if instance.image.name == "Christmas theme 1" %}
+		<div class="card bg-dark text-white">
+			<img src="{{instance.image.image.url}}" class="card-img" alt="...">
+			<div class="card-img-overlay">
+				<h5 class="card-title">{{instance.title|title}}</h5>
+				<p class="card-text">{{instance.content}}</p>
+				<p class="card-text">{{instance.promotion|upper}}</p>
+			</div>
+		</div>
+        <a href="{{instance.card_link}}">{{instance.card_link}}</a>
+        {% endif %}
+        {% if instance.image.name == "Christmas theme 2" %}
+		<div class="card bg-dark text-white">
+			<img src="{{instance.image.image.url}}" class="card-img" alt="...">
+			<div class="card-img-overlay">
+				<h5 class="card-title">{{instance.title|title}}</h5>
+				<p class="card-text">{{instance.content}}</p>
+				<p class="card-text">{{instance.promotion|upper}}</p>
+			</div>
+		</div>
+        <a href="{{instance.card_link}}">{{instance.card_link}}</a>
+        {% endif %}
+	</div>
 </div>
 <br>
 

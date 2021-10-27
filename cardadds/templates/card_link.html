@@ -1,33 +1,142 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	
+    <title>{{instance.business_name|title}}</title>
 	<style>
-		.img-card-main {
+        {% if instance.image.name == "Christmas theme 1" %}
+		#img-card-main {
 			width: 409px;
 			height: 500px;
 			background-color: skyblue;
 			margin:  auto;
+            background: url('{{ instance.image.image.url }}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
 		}
 		.title {
 			font-size: 45px;
 			font-family: 'Ephesis';
 			padding: 70px 20px 20px 20px;
-			color:  yellow;
+			color: #dbf73b;
 			line-height: 1;
+            text-shadow: #222;
+
 		}
 		.content {
-			padding: 0 70px 0 20px;
+            font-family: 'Scheherazade New';
+			padding: 0 80px 0 30px;
 			text-align: center;
 			font-size: 21px;
 			color: white;
+            line-height: 1.2;
 		}
+        .text-box {
+            color: #d0b458;
+            font-family: 'Roboto Slab';
+            font-weight: bold;
+            font-size: 35px;
+            padding: 10px;
+            padding-bottom: 15px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid rgb(245, 143, 26);
+            width: 70%;
+        }
+        .business_reinstatement {
+            color: white;
+            text-align: center;
+            padding: 20px 30px 0px 30px;
+        }
+        {% endif %}
+        {% if instance.image.name == "Christmas theme 2" %}
+		#img-card-main {
+			width: 409px;
+			height: 500px;
+			background-color: skyblue;
+			margin:  auto;
+            background: url('{{instance.image.image.url}}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+		}
+		.title {
+            width: 70%;
+			font-size: 42px;
+			font-family: 'Sunshiney';
+            font-weight: normal;
+            margin: auto;
+            text-align: center;
+			color: #956c2e;
+			line-height: 1;
+            box-shadow: #222;
+
+		}
+		.content {
+            width: 50%;
+            font-family: 'Roboto Slab';
+			margin: auto;
+            padding-top: 100px;
+			text-align: center;
+			font-size: 14px;
+			color: #956c2e;
+            line-height: 1.2;
+		}
+        .text-box {
+            color:#956c2e;
+            /* font-style: italic; */
+            padding: 10px;
+            font-family: 'Roboto Slab';
+            font-weight: bold;
+            font-size: 35px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid rgb(245, 143, 26);
+            width: 70%;
+        }
+        .business_reinstatement {
+            width: 70%;
+            margin: auto;
+            color: #956c2e;
+            text-align: center;
+            padding: 20px 30px 20px 30px;
+            font-family: 'Roboto Slab';
+            font-weight: bold;
+            font-style: italic;
+        }
+        {% endif %}
+        .btn {
+            padding-top: 20px;
+            text-align: center;
+        }
+        button {
+            height: 40px;
+            margin: auto;
+            border: 1px solid #222;
+            color: #222;
+            width: 180px;
+            border-radius: 5px;
+        }
+        button:hover {
+            height: 40px;
+            margin: auto;
+            background-color: rgb(8, 69, 138);
+            border: 1px solid #222;
+            color: #fff;
+            width: 180px;
+        }
 	</style>
 </head>
 <body>
-	<div class="img-card-main" style="background: url('{{instance.image.image.url}}'); background-repeat: no-repeat; background-position: center; background-size: contain;">
+    {% if instance.image.name == "Christmas theme 1" %}
+    <span hidden id="ref-code">{{ instance.ref_code }}</span>
+    <span hidden id="business-name">{{ instance.business_name }}</span>
+    <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
+    <div id="img-card-main">
 		<div class="title">
 			<strong>
 				{{instance.title|title}}
@@ -35,9 +144,113 @@
 		</div>
 		<div class="content">
 			<p>
-				We would like to wish all our valuable customers a Merry Christmas and Happy New Year and Holiday Season!
+				{{instance.content}}
 			</p>
-		</div>	
+		</div>
+        <div class="box">
+            <div class="text-box">
+                <small>{{instance.promotion|upper}}</small>
+            </div>
+        </div>
+        <div class="business_reinstatement">
+            <small>{{instance.business_reinstatement}}</small>
+        </div>
 	</div>
+    {% endif %}
+    {% if instance.image.name == "Christmas theme 2" %}
+	<div id="img-card-main">
+		<span hidden id="ref-code">{{ instance.ref_code }}</span>
+        <span hidden id="business-name">{{ instance.business_name }}</span>
+        <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
+		<div class="content">
+			<p>
+				{{instance.content}}
+			</p>
+		</div>
+        <div class="title">
+			<strong  id="sample">
+				{{instance.title|title}}
+			</strong> 
+		</div>
+        <div class="business_reinstatement">
+            <small>{{instance.business_reinstatement}}</small>
+        </div>
+        <div class="box">
+            <div class="text-box">
+                <small>{{instance.promotion|upper}}</small>
+            </div>
+        </div>
+	</div>
+    {% endif %}
+    <img id="img-result" src="" alt="" style="width: 100px;">
+    <div class="btn">
+        <button id="dl-image" onclick="renderImage()">Download Image</button>
+        <button onclick="sample()">sample</button>
+    </div>
+    <script src="https://adon-cards-files.s3.ap-southeast-2.amazonaws.com/static/js/html2canvas.min.js"></script>
+    <script>
+        const refCode = document.getElementById('ref-code').textContent
+        const businessName = document.getElementById('business-name').textContent
+        document.getElementById('dl-image').onclick = function() {
+            const screenshotTarget = document.getElementById('img-card-main');
+            console.log(refCode);
+            html2canvas(screenshotTarget, {
+                scale: 2,
+            }).then((canvas) => {
+                const base64Image = canvas.toDataURL("image/jpg");
+                console.log(base64Image)
+                var anchor = document.createElement('a');
+                anchor.setAttribute('href', base64Image);
+                anchor.setAttribute('download', businessName+'-'+refCode+'.jpg');
+                anchor.click();
+                anchor.remove();
+            }).catch(error => {
+                console.log(error)
+            })
+            console.log('working')
+        };
+        // function renderImage() {
+        //     const screenshotTarget = document.querySelector('#img-card-main');
+        //     html2canvas(screenshotTarget, {
+        //         scale: 2,
+        //         onrendered: function(canvas) {
+        //             const base64Image = canvas.toDataURL("image/jpg");
+        //             var anchor = document.createElement('a');
+        //             anchor.setAttribute('href', base64Image);
+        //             anchor.setAttribute('download', businessName+'-'+refCode+'.jpg');
+        //             anchor.click();
+        //             anchor.remove();
+        //         }
+        //     })
+        // }
+        // function sample() {
+        //     console.log('im working');
+        //     const imgSrc = document.getElementById('img').getAttribute('src');
+        //     var anchor = document.createElement('a');
+        //     anchor.setAttribute('href', imgSrc);
+        //     anchor.setAttribute('download', 'sample.jpg');
+        //     var dimg = anchor.click()
+        //     console.log(dimg.toDataURL('image/jpg'));
+        // }
+        // async function parseURI(d){
+        //     var reader = new FileReader();    /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
+        //     reader.readAsDataURL(d);          /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
+        //     return new Promise((res,rej)=> {  /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
+        //         reader.onload = (e) => {        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
+        //         res(e.target.result)
+        //         }
+        //     })
+        // } 
+
+        // async function getDataBlob(url){
+        //     var res = await fetch(url);
+        //     var blob = await res.blob();
+        //     var uri = await parseURI(blob);
+        //     console.log(uri)
+        //     return uri;
+        // }
+
+        // getDataBlob(your_url);
+    </script>
 </body>
 </html>
