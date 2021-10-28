@@ -136,7 +136,7 @@
     <span hidden id="ref-code">{{ instance.ref_code }}</span>
     <span hidden id="business-name">{{ instance.business_name }}</span>
     <img hidden src="{{ instance.image.image }}" alt="" id="img">
-    <canvas id="img-card-main">
+    <div id="img-card-main">
 		<div class="title">
 			<strong>
 				{{instance.title|title}}
@@ -155,10 +155,10 @@
         <div class="business_reinstatement">
             <small>{{instance.business_reinstatement}}</small>
         </div>
-	</canvas>
+	</div>
     {% endif %}
     {% if instance.image.name == "Christmas theme 2" %}
-	<canvas id="img-card-main">
+	<div id="img-card-main">
 		<span hidden id="ref-code">{{ instance.ref_code }}</span>
         <span hidden id="business-name">{{ instance.business_name }}</span>
         <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
@@ -180,7 +180,7 @@
                 <small>{{instance.promotion|upper}}</small>
             </div>
         </div>
-	</canvas>
+	</div>
     {% endif %}
     <img id="img-result" src="" alt="" style="width: 100px;">
     <div class="btn">
