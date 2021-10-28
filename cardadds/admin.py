@@ -6,7 +6,7 @@ admin.site.site_header = "AD ON GROUP"
 
 @admin.register(CardAdd)
 class CardAddAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "image_url")
+    list_display = ("__str__")
 
 
 admin.site.register(BackgroundImage)
