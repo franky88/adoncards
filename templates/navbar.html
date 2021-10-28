@@ -1,6 +1,6 @@
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'cards:home' %}">Ad On Group</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,12 +8,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Theme</a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'cards:home' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Add Theme</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-rigth">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hello there {{ request.user.username|title }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- <a class="dropdown-item" href="#">Profile</a> -->
+                            <a class="dropdown-item" href="{%url 'password_change'%}">Change password</a>
+                            <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

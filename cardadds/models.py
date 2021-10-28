@@ -48,16 +48,15 @@ class CardAdd(models.Model):
     category = models.ForeignKey(CardCategory, on_delete=SET_NULL, null=True)
     business_name = models.CharField(max_length=200)
     title = models.CharField(
-        max_length=200, default="Merry Christmas Happy New Year")
-    content = models.TextField(verbose_name="message content",
+        max_length=200, default="Merry Christmas Happy New Year", blank=True)
+    content = models.TextField(verbose_name="message content", blank=True,
                                default="We would like to wish all our valuable customers a Merry Christmas and Happy New Year and Holiday Season!")
     promotion = models.CharField(
-        max_length=250, verbose_name="promotional offer", default="up to 30% off")
+        max_length=250, verbose_name="promotional offer", default="up to 30% off", blank=True)
     business_reinstatement = models.TextField(
-        default="We will be closed for the Christmas Season From 24th December to the 2nd January")
+        default="We will be closed for the Christmas Season From 24th December to the 2nd January", blank=True)
     image = models.ForeignKey(
-        BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme")
-    card_link = models.CharField(max_length=200, null=True, blank=True)
+        BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme", default=1)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 

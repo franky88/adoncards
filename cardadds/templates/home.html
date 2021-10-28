@@ -8,15 +8,7 @@
 </nav>
 {% include 'messages.html' %}
 <div>
-    {% if request.user.is_authenticated %}
-        {% if perms.cardadds.add_cardadd %}
-            <a href="{% url 'cards:create-card' %}" class="float-right btn btn-primary btn-sm">Create Card</a>
-        {% else %}
-
-        {% endif %}
-    {% else %}
-    {% include "login.html" %}
-    {% endif %}
+    <a href="{% url 'cards:create-card' %}" class="float-right btn btn-primary btn-sm">Create Card</a>
     <h3>Card List</h3>
     <hr>
     <div class="row">
@@ -35,20 +27,20 @@
                             {% for card in cards %}
                             <tr>
                                 <td>
-                                    <a href="{% url 'cards:card-details' card.ref_code %}"><img src="{{card.image.image.url}}" alt="" style="width: 100px"></a>
+                                    <a href="{% url 'cards:update-card' card.ref_code %}"><img src="{{card.image.image.url}}" alt="" style="width: 100px"></a>
                                 </td>
                                 <td>
                                     <p>
-                                        <a href="{% url 'cards:card-details' card.ref_code %}">{{ card.business_name|title }}</a> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
+                                        <strong>{{ card.business_name|title }}</strong> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
                                         <small>{{ card.title|title }}</small> <br>
-                                        <small class="text-muted">Link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{card.card_link}}</a></small> <br>
+                                        <small class="text-muted">Preview card link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{request.path}}{% url 'cards:card-link' card.ref_code %}</a></small> <br>
                                         <small class="text-muted">Date created: {{ card.created }} | Updated: {{card.updated}}</small>
                                     </p>
                                 </td>
                                 <td>
                                     <div>
-                                        <a href="{% url 'cards:update-card' card.ref_code %}">Edit</a> |
-                                        <a href="">Delete</a>
+                                        <a href="{% url 'cards:update-card' card.ref_code %}" class="btn btn-outline-info btn-sm">Update</a>
+                                        <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
                                     </div>
                                 </td>
                             </tr>

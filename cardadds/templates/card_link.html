@@ -7,31 +7,47 @@
 	
     <title>{{instance.business_name|title}}</title>
 	<style>
+        @import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Roboto+Slab:wght@400;700&family=Scheherazade+New:wght@400;700&family=Sunshiney&display=swap');
         {% if instance.image.name == "Christmas theme 1" %}
 		#img-card-main {
 			width: 409px;
 			height: 500px;
 			background-color: skyblue;
-			margin:  auto;
             background: url('{{ instance.image.image.url }}');
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 		}
 		.title {
 			font-size: 45px;
 			font-family: 'Ephesis';
-			padding: 70px 20px 20px 20px;
+            width: 90%;
+            margin-left: 20px;
+            margin-top: 80px;
+			/* padding: 70px 20px 20px 20px; */
 			color: #dbf73b;
 			line-height: 1;
-            text-shadow: #222;
-
 		}
+        .title > strong {
+            padding: 20px;
+            background: -webkit-linear-gradient(#d1ba69, #bf9b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 		.content {
+            width: 70%;
+            margin-left: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
             font-family: 'Scheherazade New';
-			padding: 0 80px 0 30px;
-			text-align: center;
-			font-size: 21px;
+            text-align: center;
+			font-size: 18px;
 			color: white;
             line-height: 1.2;
 		}
@@ -58,11 +74,16 @@
 			width: 409px;
 			height: 500px;
 			background-color: skyblue;
-			margin:  auto;
             background: url('{{instance.image.image.url}}');
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 		}
 		.title {
             width: 70%;
@@ -76,6 +97,11 @@
             box-shadow: #222;
 
 		}
+        .title > strong {
+            background: -webkit-linear-gradient(#b9873b, #8a642b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 		.content {
             width: 50%;
             font-family: 'Roboto Slab';
@@ -109,6 +135,72 @@
             font-style: italic;
         }
         {% endif %}
+        {% if instance.image.name == "Christmas theme 3" %}
+		#img-card-main {
+			width: 409px;
+			height: 500px;
+			background-color: skyblue;
+            background: url('{{instance.image.image.url}}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+		}
+		.title {
+            width: 70%;
+			font-size: 42px;
+			font-family: 'Sunshiney';
+            font-weight: normal;
+            margin: auto;
+            margin-top: 70px;
+            text-align: center;
+			line-height: 1;
+
+		}
+        .title > strong {
+            color: #fff;
+            /* background: -webkit-linear-gradient(#e4dcd1, #f5e4cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; */
+        }
+		.content {
+            width: 60%;
+            font-family: 'Roboto Slab';
+			margin: auto;
+            margin-top: 20px;
+            margin-bottom: 40px;
+			text-align: center;
+			font-size: 12pt;
+			color: #e4dcd1;
+            line-height: 1.2;
+		}
+        .text-box {
+            color:#f2d9a7;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: 'Roboto Slab';
+            font-weight: bold;
+            font-size: 35px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid rgb(224, 179, 128);
+            width: 70%;
+        }
+        .business_reinstatement {
+            font-family: 'Scheherazade New';
+            width: 70%;
+            margin: auto;
+            color: #e4dcd1;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1;
+        }
+        {% endif %}
         .btn {
             padding-top: 20px;
             text-align: center;
@@ -138,15 +230,15 @@
     <img hidden src="{{ instance.image.image }}" alt="" id="img">
     <div id="img-card-main">
 		<div class="title">
-			<strong>
-				{{instance.title|title}}
-			</strong> 
-		</div>
-		<div class="content">
-			<p>
-				{{instance.content}}
-			</p>
-		</div>
+            <strong>
+                {{instance.title|title}}
+            </strong> 
+        </div>
+        <div class="content">
+            <p>
+                {{instance.content}}
+            </p>
+        </div>
         <div class="box">
             <div class="text-box">
                 <small>{{instance.promotion|upper}}</small>
@@ -158,20 +250,20 @@
 	</div>
     {% endif %}
     {% if instance.image.name == "Christmas theme 2" %}
+    <span hidden id="ref-code">{{ instance.ref_code }}</span>
+    <span hidden id="business-name">{{ instance.business_name }}</span>
+    <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
 	<div id="img-card-main">
-		<span hidden id="ref-code">{{ instance.ref_code }}</span>
-        <span hidden id="business-name">{{ instance.business_name }}</span>
-        <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
-		<div class="content">
-			<p>
-				{{instance.content}}
-			</p>
-		</div>
+        <div class="content">
+            <p>
+                {{instance.content}}
+            </p>
+        </div>
         <div class="title">
-			<strong  id="sample">
-				{{instance.title|title}}
-			</strong> 
-		</div>
+            <strong  id="sample">
+                {{instance.title|title}}
+            </strong> 
+        </div>
         <div class="business_reinstatement">
             <small>{{instance.business_reinstatement}}</small>
         </div>
@@ -182,92 +274,30 @@
         </div>
 	</div>
     {% endif %}
-    <img id="img-result" src="" alt="" style="width: 100px;">
-    <div class="btn">
-        <button id="dl-image" onclick="renderImage()">Download Image</button>
-        <button onclick="getDataBlob()">sample</button>
-    </div>
-    <script src="https://adon-cards-files.s3.ap-southeast-2.amazonaws.com/static/js/html2canvas.min.js"></script>
-    <script>
-        const refCode = document.getElementById('ref-code').textContent
-        const businessName = document.getElementById('business-name').textContent
-        const imgSRC = document.getElementById('img').getAttribute('src')
-        // console.log(imgSRC)
-        document.getElementById('dl-image').onclick = function() {
-            const screenshotTarget = document.getElementById('img-card-main');
-            console.log(refCode);
-            html2canvas(screenshotTarget, {
-                scale: 2,
-            }).then((canvas) => {
-                const base64Image = canvas.toDataURL("image/jpg");
-                console.log(base64Image)
-                var anchor = document.createElement('a');
-                anchor.setAttribute('href', base64Image);
-                anchor.setAttribute('download', businessName+'-'+refCode+'.jpg');
-                anchor.click();
-                anchor.remove();
-            }).catch(error => {
-                console.log(error)
-            })
-            console.log('working')
-        };
-        // async function loadImageToCanvas(url) {
-        //     let canvas, ctx
-        //     canvas = document.getElementById('img-card-main')
-        //     ctx = canvas.getContext('2d');
-        //     canvas.width = 409;
-        //     canvas.height = 500;
-        //     let imgObj = new Image();
-        //     imgObj.onload = function(){
-        //         let w = canvas.width;
-        //         let nw = imgObj.naturalWidth;
-        //         let nh = imgObj.naturalHeight;
-        //         let aspect = nw/nh;
-        //         let h = w /aspect;
-        //         canvas.height = h;
-        //         ctx.drawImage(imgObj, 0,0, w, h)
-        //     };
-        //     imgObj.src = imgSRC;
-        // }
-
-        async function downloadImg(url) {
-            const reader = new FileReader();
-            reader.readAsDataURL(url)
-            // console.log(reader.result)
-            return new Promise((res, rej) => {
-                reader.onload = () => {
-                    // console.log(e)
-                    res(reader.result)
-                    localStorage.setItem('recent-image', reader.result);
-                }
-            })
-        }
-        async function parseURI(d){
-            var reader = new FileReader();    /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
-            reader.readAsDataURL(d);          /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
-            return new Promise((res,rej)=> {  /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
-                // console.log(res)
-                reader.onload = (e) => {        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
-                    res(e.target.result)
-                    console.log("result: ", e.target.result)
-                    localStorage.setItem('recent-image', e.target.result);
-                }
-            })
-        } 
-
-        async function getDataBlob(url){
-            var res = await fetch(url, {
-                mode: 'no-cors',
-            });
-            console.log(res)
-            var blob = await res.blob({type: 'image/jpeg'});
-            console.log(blob)
-            var uri = await parseURI(blob);
-            // console.log(uri)
-            return uri;
-        }
-
-        getDataBlob('https://i.picsum.photos/id/490/200/300.jpg?hmac=8hYDsOwzzMCthBMYMN9bM6POtrJfVAmsvamM2oOEiF4');
-    </script>
+    {% if instance.image.name == "Christmas theme 3" %}
+    <span hidden id="ref-code">{{ instance.ref_code }}</span>
+    <span hidden id="business-name">{{ instance.business_name }}</span>
+    <img hidden src="{{ instance.image.image.url }}" alt="" id="img">
+	<div id="img-card-main">
+        <div class="title">
+            <strong>
+                {{instance.title|title}}
+            </strong> 
+        </div>
+        <div class="content">
+            <p>
+                {{instance.content}}
+            </p>
+        </div>
+        <div class="box">
+            <div class="text-box">
+                <small>{{instance.promotion|upper}}</small>
+            </div>
+        </div>
+        <div class="business_reinstatement">
+            <small>{{instance.business_reinstatement}}</small>
+        </div>
+	</div>
+    {% endif %}
 </body>
 </html>

@@ -1,7 +1,6 @@
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-
 main > .container {
   padding: 60px 15px 0;
 }
@@ -18,22 +17,105 @@ main > .container {
 code {
   font-size: 80%;
 }
-.img-card-main {
-  width: 409px;
-  height: 500px;
-  background-color: skyblue;
-  margin: auto;
+{% instance.image.name == "Christmas theme 1" %}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.card-details {
+  width: 100%;
+  text-align: center;
 }
 .title {
   font-size: 45px;
-  font-family: "Ephesis";
-  padding: 70px 20px 20px 20px;
-  color: yellow;
+  font-family: 'Ephesis';
+  color:  #956c2e;
   line-height: 1;
+  /*margin-top: 80px;*/
+  text-align: center;
 }
 .content {
-  padding: 0 70px 0 20px;
+  font-size: 10pt;
+  color: #956c2e;
+  width: 60%;
+  margin: auto;
+  margin-top: 130px;
   text-align: center;
-  font-size: 21px;
-  color: white;
 }
+.business_reinstatement {
+  font-size: 10pt;
+  color:  #956c2e;
+  line-height: 1;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+
+}
+.text-box {
+  font-size: 45px;
+  color:  #956c2e;
+  line-height: 1;
+  border: 1px solid #956c2e;
+  width: 70%;
+  margin: auto;
+  padding: 3%;
+  margin-top: 40px;
+}
+{% endif %}
+{% instance.image.name == "Christmas theme 2" %}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.card-details{
+  width: 409px;
+  height: 500px;
+  /*display: flex;
+  flex-direction: column;
+  justify-content: space-around;*/
+  text-align: center;
+}
+.title {
+  font-size: 45px;
+  font-family: 'Sunshiney';
+  color:  #956c2e;
+  line-height: 1;
+  /*margin-top: 80px;*/
+  text-align: center;
+}
+.content {
+  font-size: 10pt;
+  color: #956c2e;
+  width: 60%;
+  margin: auto;
+  margin-top: 130px;
+  text-align: center;
+}
+.business_reinstatement {
+  font-size: 10pt;
+  color:  #956c2e;
+  line-height: 1;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+
+}
+.text-box {
+  font-size: 45px;
+  color:  #956c2e;
+  line-height: 1;
+  border: 1px solid #956c2e;
+  width: 70%;
+  margin: auto;
+  padding: 3%;
+  margin-top: 40px;
+}
+{% endif %}

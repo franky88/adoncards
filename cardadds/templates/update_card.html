@@ -7,9 +7,9 @@
       <li class="breadcrumb-item active" aria-current="page">{{title|title}}</li>
     </ol>
 </nav>
+{% include 'messages.html' %}
 <div class="row">
     <div class="col-sm-8">
-        {% if perms.cardadds.change_cardadd %}
         <div class="card">
             <div class="card-header">
                 <strong>{{title|title}}</strong>
@@ -37,37 +37,30 @@
                 </div>
             </form>
         </div>
-        {% else %}
-        <div class="card">
-            <div class="card-body">
-                <strong>Ask your app administrator for access.</strong>
-            </div>
-        </div>
-        {% endif %}
     </div>
     <div class="col-sm-4">
-        {% if instance.image.name == "Christmas theme 1" %}
-		<div class="card bg-dark text-white">
-			<img src="{{instance.image.image.url}}" class="card-img" alt="...">
-			<div class="card-img-overlay">
-				<h5 class="card-title">{{instance.title|title}}</h5>
-				<p class="card-text">{{instance.content}}</p>
-				<p class="card-text">{{instance.promotion|upper}}</p>
-			</div>
-		</div>
-        <a href="{{instance.card_link}}">{{instance.card_link}}</a>
-        {% endif %}
-        {% if instance.image.name == "Christmas theme 2" %}
-		<div class="card bg-dark text-white">
-			<img src="{{instance.image.image.url}}" class="card-img" alt="...">
-			<div class="card-img-overlay">
-				<h5 class="card-title">{{instance.title|title}}</h5>
-				<p class="card-text">{{instance.content}}</p>
-				<p class="card-text">{{instance.promotion|upper}}</p>
-			</div>
-		</div>
-        <a href="{{instance.card_link}}">{{instance.card_link}}</a>
-        {% endif %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Card details</strong>
+                        <div class="float-right">
+                            <a href="{% url 'cards:card-delete' instance.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Popup link | <a href="{% url 'cards:card-link' instance.ref_code %}" target="_blank">Preview card</a>
+                        </p>
+                        <hr>
+                        <small>Created by: @{{ instance.created_by.username|title }}</small>
+                    </div>
+                    <div class="card-footer">
+                        <small>Date created: {{ instance.created }} | Updated: {{instance.updated}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 <br>

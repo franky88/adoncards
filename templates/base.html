@@ -13,6 +13,14 @@
     <title>Ad On Group</title>
   </head>
   <body>
+    {% if request.user.is_anonymous %}
+    <main role="main" class="flex-shrink-0">
+      <div class="container">
+          {% block login %}
+          {% endblock %}
+      </div>
+    </main>
+    {% else %}
     {% include "navbar.html" %}
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -21,7 +29,7 @@
         </div>
     </main>
     {% include "footer.html" %}
-
+    {% endif %}
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
