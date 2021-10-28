@@ -67,14 +67,14 @@ class CardAdd(models.Model):
     def __str__(self):
         return self.business_name
 
-    def image_url(self):
-        with open(self.image.image.path, 'rb') as imageFile:
-            string = base64.b64encode(imageFile.read())
-            print(str(string))
-            # return string
-        with open(self.image.image, "wb") as fh:
-            fh.write(str.decode('base64'))
-            return fh
+    # def image_url(self):
+    #     with open(self.image.image.path, 'rb') as imageFile:
+    #         string = base64.b64encode(imageFile.read())
+    #         print(str(string))
+    #         # return string
+    #     with open(self.image.image, "wb") as fh:
+    #         fh.write(str.decode('base64'))
+    #         return fh
 
 
 # def decodeDesignImage(data):
