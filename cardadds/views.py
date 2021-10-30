@@ -38,7 +38,7 @@ def create_card(request):
             instance.save()
             messages.add_message(request, messages.SUCCESS,
                                  'Card successfully created name: %s.' % (instance.business_name))
-            return redirect('cards:update-card', instance.ref_code)
+            return redirect('cards:home')
     else:
         cardform = CardAddForm(request.POST or None, request.FILES or None)
     context = {
