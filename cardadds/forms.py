@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import CardAdd
+from .models import CardAdd, CardCategory
 from django.forms import RadioSelect, widgets, TextInput
 
 
@@ -19,3 +19,11 @@ class CardAddForm(forms.ModelForm):
         # widgets = {
         #     'image': RadioSelect(attrs={'type': 'radio'})
         # }
+
+
+# class CardCategoryForm(forms.ModelForm):
+#     class Meta:
+#         model = CardCategory
+#         fields = [
+#             '*'
+#         ]

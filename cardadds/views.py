@@ -14,11 +14,13 @@ from django.urls import reverse_lazy
 @login_required()
 def home(request):
     cards = CardAdd.objects.all()
+    card_activity = CardAdd.objects.all().order_by('-created')[:10]
     cats = CardCategory.objects.all()
     context = {
         "title": "card list",
         "cards": cards,
-        "categories": cats
+        "categories": cats,
+        "card_activity": card_activity
     }
     return render(request, "home.html", context)
 
@@ -52,8 +54,7 @@ def card_link(request, *args, **kwargs):
     data = get_object_or_404(CardAdd, ref_code=card_code)
     context = {
         "title": "card details",
-        "instance": data,
-        "baseURL": "http://localhost:8000"
+        "instance": data
     }
     return render(request, "card_link.html", context)
 
@@ -64,7 +65,9 @@ def update_card(request, ref_code):
     form = CardAddForm(request.POST or None,
                        request.FILES or None, instance=instance)
     if form.is_valid():
-        form.save()
+        obj = form.save(commit=False)
+        obj.updated_by = request.user
+        obj.save()
         messages.add_message(request, messages.SUCCESS,
                              'Card successfully updated name: %s.' % (instance.business_name))
         return redirect("cards:update-card", instance.ref_code)

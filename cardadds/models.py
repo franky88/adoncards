@@ -30,6 +30,8 @@ class BackgroundImage(models.Model):
 
 
 class CardCategory(models.Model):
+    created_by = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True)
     category_name = models.CharField(max_length=200)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
@@ -44,6 +46,8 @@ class CardCategory(models.Model):
 class CardAdd(models.Model):
     created_by = models.ForeignKey(
         User, on_delete=models.SET_DEFAULT, default=1)
+    updated_by = models.ForeignKey(
+        User, related_name='updated_by', on_delete=models.SET_NULL, null=True)
     ref_code = models.CharField(max_length=12, unique=True, blank=True)
     category = models.ForeignKey(CardCategory, on_delete=SET_NULL, null=True)
     business_name = models.CharField(max_length=200)
@@ -57,11 +61,12 @@ class CardAdd(models.Model):
         default="We will be closed for the Christmas Season From 24th December to the 2nd January", blank=True)
     image = models.ForeignKey(
         BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme", default=1)
+    is_posted = models.BooleanField(default=False)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
     class Meta:
-        ordering = ['-updated', '-created']
+        ordering = ['-created', '-updated']
 
     def __str__(self):
         return self.business_name
