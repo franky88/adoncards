@@ -62,8 +62,8 @@ class CardAdd(models.Model):
     image = models.ForeignKey(
         BackgroundImage, on_delete=models.SET_NULL, null=True, verbose_name="background theme", default=1)
     is_posted = models.BooleanField(default=False)
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created', '-updated']

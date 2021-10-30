@@ -14,7 +14,7 @@ from django.urls import reverse_lazy
 @login_required()
 def home(request):
     cards = CardAdd.objects.all()
-    card_activity = CardAdd.objects.all().order_by('-created')[:10]
+    card_activity = CardAdd.objects.all()[:10]
     cats = CardCategory.objects.all()
     context = {
         "title": "card list",
