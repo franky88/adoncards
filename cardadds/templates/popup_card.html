@@ -37,7 +37,11 @@
 			background-position: center;
 			background-size: contain;
 			display: grid;
+			{% if instance.promotional_offer %}
 			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			{% else %}
+			grid-template-rows: 1fr 1fr 1fr 1fr;
+			{% endif %}
 			/*align-content: center;*/
 			/*gap: 20px;*/
 		}
@@ -159,7 +163,11 @@
 			background-position: center;
 			background-size: contain;
 			display: grid;
+			{% if instance.promotional_offer %}
 			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			{% else %}
+			grid-template-rows: 1fr 1fr 1fr 1fr;
+			{% endif %}
 			/*align-content: center;*/
 			/*gap: 20px;*/
 		}
@@ -280,7 +288,11 @@
 			background-position: center;
 			background-size: contain;
 			display: grid;
+			{% if instance.promotional_offer %}
 			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			{% else %}
+			grid-template-rows: 1fr 1fr 1fr 1fr;
+			{% endif %}
 			/*align-content: center;*/
 			/*gap: 20px;*/
 		}
@@ -396,7 +408,10 @@
 				</p> 
 			</div>
 			<div class="text-box">
+				{% if instance.promotional_offer %}
 	            <small>{{instance.promotional_offer|upper}}</small>
+				{% else %}
+				{% endif %}
 	        </div>
 	        <div class="business_reinstatement">
 				<p>
@@ -430,7 +445,10 @@
 				</p> 
 			</div>
 			<div class="text-box">
+	            {% if instance.promotional_offer %}
 	            <small>{{instance.promotional_offer|upper}}</small>
+				{% else %}
+				{% endif %}
 	        </div>
 	        <div class="business_reinstatement">
 				<p>
@@ -464,7 +482,11 @@
 				</p> 
 			</div>
 			<div class="text-box">
+	            {% if instance.promotional_offer %}
 	            <small>{{instance.promotional_offer|upper}}</small>
+				{% else %}
+				
+				{% endif %}
 	        </div>
 	        <div class="business_reinstatement">
 				<p>
