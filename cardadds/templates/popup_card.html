@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{instance.business_name|title}}</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Roboto+Slab:wght@400;700&family=Scheherazade+New:wght@400;700&family=Sunshiney&display=swap');
+		{% if instance.image.name == "Christmas theme 1" %}
+        .card-container	{
+			width: 400px;
+			height: 494px;
+			background: url('{{instance.image.image.url}}');
+			margin: 0;
+			position: absolute;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.center {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.card-holder {
+			height: 400px;
+			width: 300px;
+			text-align: center;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			display: grid;
+			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			/*align-content: center;*/
+			/*gap: 20px;*/
+		}
+		.title {
+			display: grid;
+			align-content: center;
+			font-size: 40px;
+            margin-top: -20px;
+            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+			font-family: 'Ephesis';
+			font-weight: normal;
+            margin: auto;
+			color: #956c2e;
+			line-height: 1;
+            color: #f7f4b8;
+		}
+		.content {
+			width: 250px;
+			margin: auto;
+			margin-top: 10px;
+            margin-bottom: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			align-content: center;
+			font-size: 18px;
+			line-height: 1;
+            color: #e3ce78;
+            font-style: italic;
+		}
+		.content-2 {
+			width: 250px;
+			margin: auto;
+			margin-top: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			/*align-content: center;*/
+			font-size: 18px;
+			line-height: 1;
+            color: #e3ce78;
+            font-style: italic;
+		}
+		.text-box {
+			height: 50px;
+			display: grid;
+			align-content: center;
+            font-style: italic;
+		}
+		small {
+			display: grid;
+			align-content: center;
+			margin: auto;
+			/*margin-top: 50px;*/
+            font-size: 30px;
+            font-family: 'Scheherazade New';
+            font-weight: bold;
+            line-height: 1;
+            border: 1px solid rgb(245, 143, 26);
+            color:#d0b458;
+            padding: 8px 20px;
+            font-style: italic;
+		}
+		.business_reinstatement {
+			width: 180px;
+			margin: auto;
+            margin-top: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 11px;
+            color:#fff;
+            line-height: 1;
+            font-style: italic;
+		}
+		.promotional-text {
+			width: 230px;
+			margin: auto;
+            margin-top: -20px;
+            margin-bottom: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 15px;
+            color:#fff;
+            line-height: 1;
+            font-style: italic;
+		}
+        {% endif %}
+        {% if instance.image.name == "Christmas theme 2" %}
+        .card-container	{
+			width: 400px;
+			height: 494px;
+			background: url('{{instance.image.image.url}}');
+			margin: 0;
+			position: absolute;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.center {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.card-holder {
+			height: 400px;
+			width: 300px;
+			text-align: center;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			display: grid;
+			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			/*align-content: center;*/
+			/*gap: 20px;*/
+		}
+		.title {
+			display: grid;
+			align-content: center;
+			font-size: 40px;
+            margin-top: -30px;
+            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+			font-family: 'Ephesis';
+			font-weight: normal;
+            margin: auto;
+			color: #bc8d1b;
+			line-height: 1;
+		}
+		.content {
+			width: 250px;
+			margin: auto;
+			margin-top: 30px;
+            margin-bottom: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			align-content: center;
+			font-size: 18px;
+			line-height: 1;
+            color: #564126;
+            font-style: italic;
+		}
+		.content-2 {
+			width: 250px;
+			margin: auto;
+			margin-top: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			/*align-content: center;*/
+			font-size: 18px;
+			line-height: 1;
+            color: #564126;
+            font-style: italic;
+		}
+		.text-box {
+			height: 50px;
+			display: grid;
+			align-content: center;
+            font-style: italic;
+		}
+		small {
+			display: grid;
+			align-content: center;
+			margin: auto;
+			/*margin-top: 50px;*/
+            font-size: 30px;
+            font-family: 'Scheherazade New';
+            font-weight: bold;
+            border: 1px solid rgb(245, 143, 26);
+            color:#956c2e;
+            padding: 8px 20px;
+            line-height: 1;
+            font-style: italic;
+		}
+		.business_reinstatement {
+			width: 180px;
+			margin: auto;
+            margin-top: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 11px;
+            line-height: 1;
+            color: #564126;
+            font-style: italic;
+		}
+		.promotional-text {
+			width: 230px;
+			margin: auto;
+            margin-top: -20px;
+            margin-bottom: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 15px;
+            line-height: 1;
+            color: #564126;
+            font-style: italic;
+		}
+        {% endif %}
+        {% if instance.image.name == "Christmas theme 3" %}
+        .card-container	{
+			width: 400px;
+			height: 494px;
+			background: url('{{instance.image.image.url}}');
+			margin: 0;
+			position: absolute;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.center {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		.card-holder {
+			height: 400px;
+			width: 300px;
+			text-align: center;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			display: grid;
+			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+			/*align-content: center;*/
+			/*gap: 20px;*/
+		}
+		.title {
+			display: grid;
+			align-content: center;
+			font-size: 40px;
+            margin-top: -20px;
+            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 10px;
+			font-family: 'Ephesis';
+			font-weight: bold;
+            margin: auto;
+			color: #e7d580;
+			line-height: 1;
+		}
+		.content {
+			width: 250px;
+			margin: auto;
+			margin-top: 30px;
+            margin-bottom: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			align-content: center;
+			font-size: 18px;
+			line-height: 1;
+            color:#fff;
+            font-style: italic;
+		}
+		.content-2 {
+			width: 250px;
+			margin: auto;
+			margin-top: -20px;
+			font-family: 'Scheherazade New';
+			display: grid;
+			/*align-content: center;*/
+			font-size: 18px;
+			line-height: 1;
+            color:#fff;
+            font-style: italic;
+		}
+		.text-box {
+			height: 50px;
+			display: grid;
+			align-content: center;
+            font-style: italic;
+		}
+		small {
+			display: grid;
+			align-content: center;
+			margin: auto;
+			/* margin-top: 50px; */
+            font-size: 30px;
+            font-family: 'Scheherazade New';
+            font-weight: bold;
+            border: 1px solid rgb(255, 255, 255);
+            color:#fff;
+            padding: 8px 20px;
+            line-height: 1;
+		}
+		.business_reinstatement {
+			width: 180px;
+			margin: auto;
+            margin-top: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 11px;
+            line-height: 1;
+            color:#fff;
+            font-style: italic;
+		}
+		.promotional-text {
+			width: 230px;
+			margin: auto;
+            margin-top: -20px;
+            margin-bottom: 10px;
+			display: grid;
+			font-family: 'Scheherazade New';
+			align-content: center;
+			font-size: 15px;
+            line-height: 1;
+            color:#fff;
+            font-style: italic;
+		}
+        {% endif %}
+	</style>
+</head>
+<body>
+    {% if instance.image.name == "Christmas theme 1" %}
+	<div class="card-container">
+		<div class="card-holder center">
+			<div class="content">
+				<p>
+					{{instance.content}}
+				</p>
+			</div>	
+			<div class="title">
+				<strong>
+					{{instance.title|title}}
+				</strong> 
+			</div>
+			<div class="content-2">
+				<p>
+					{{instance.closing_content}}
+				</p>
+			</div>
+			<div class="promotional-text">
+				<p>
+					{{instance.promotion_content}}
+				</p> 
+			</div>
+			<div class="text-box">
+	            <small>{{instance.promotional_offer|upper}}</small>
+	        </div>
+	        <div class="business_reinstatement">
+				<p>
+					{{instance.business_reinstatement}}
+				</p> 
+			</div>
+		</div>
+	</div>
+    {% endif %}
+    {% if instance.image.name == "Christmas theme 2" %}
+	<div class="card-container">
+		<div class="card-holder center">
+			<div class="content">
+				<p>
+					{{instance.content}}
+				</p>
+			</div>	
+			<div class="title">
+				<strong>
+					{{instance.title|title}}
+				</strong> 
+			</div>
+			<div class="content-2">
+				<p>
+					{{instance.closing_content}}
+				</p>
+			</div>
+			<div class="promotional-text">
+				<p>
+					{{instance.promotion_content}}
+				</p> 
+			</div>
+			<div class="text-box">
+	            <small>{{instance.promotional_offer|upper}}</small>
+	        </div>
+	        <div class="business_reinstatement">
+				<p>
+					{{instance.business_reinstatement}}
+				</p> 
+			</div>
+		</div>
+	</div>
+    {% endif %}
+    {% if instance.image.name == "Christmas theme 3" %}
+	<div class="card-container">
+		<div class="card-holder center">
+			<div class="content">
+				<p>
+					{{instance.content}}
+				</p>
+			</div>	
+			<div class="title">
+				<strong>
+					{{instance.title|title}}
+				</strong> 
+			</div>
+			<div class="content-2">
+				<p>
+					{{instance.closing_content}}
+				</p>
+			</div>
+			<div class="promotional-text">
+				<p>
+					{{instance.promotion_content}}
+				</p> 
+			</div>
+			<div class="text-box">
+	            <small>{{instance.promotional_offer|upper}}</small>
+	        </div>
+	        <div class="business_reinstatement">
+				<p>
+					{{instance.business_reinstatement}}
+				</p> 
+			</div>
+		</div>
+	</div>
+    {% endif %}
+</body>
+</html>

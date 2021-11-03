@@ -50,13 +50,17 @@ class CardAdd(models.Model):
         User, related_name='updated_by', on_delete=models.SET_NULL, null=True)
     ref_code = models.CharField(max_length=12, unique=True, blank=True)
     category = models.ForeignKey(CardCategory, on_delete=SET_NULL, null=True)
-    business_name = models.CharField(max_length=200)
+    business_name = models.CharField(max_length=100)
     title = models.CharField(
-        max_length=200, default="Merry Christmas Happy New Year", blank=True)
-    content = models.TextField(verbose_name="message content", blank=True,
-                               default="We would like to wish all our valuable customers a Merry Christmas and Happy New Year and Holiday Season!")
-    promotion = models.CharField(
-        max_length=250, verbose_name="promotional offer", default="up to 30% off", blank=True)
+        verbose_name="content title", max_length=100, default="Merry Christmas & Happy New Year", blank=True)
+    content = models.TextField(verbose_name="start content", blank=True,
+                               default="We would like to wish all our valuable customers a")
+    closing_content = models.TextField(
+        default="and Holiday Season!", blank=True)
+    promotion_content = models.TextField(
+        verbose_name="promotional content", default="For the months of December and January we are running the following Special:", blank=True)
+    promotional_offer = models.CharField(
+        max_length=50, default="up to 30% off", blank=True)
     business_reinstatement = models.TextField(
         default="We will be closed for the Christmas Season From 24th December to the 2nd January", blank=True)
     image = models.ForeignKey(
@@ -71,25 +75,6 @@ class CardAdd(models.Model):
     def __str__(self):
         return self.business_name
 
-    # def image_url(self):
-    #     with open(self.image.image.path, 'rb') as imageFile:
-    #         string = base64.b64encode(imageFile.read())
-    #         print(str(string))
-    #         # return string
-    #     with open(self.image.image, "wb") as fh:
-    #         fh.write(str.decode('base64'))
-    #         return fh
-
-
-# def decodeDesignImage(data):
-#     try:
-#         data = base64.b64encode(data.encode('UTF-8'))
-#         buf = io.BytesIO(data)
-#         img = Image.open(buf)
-#         return img
-#     except:
-#         return None
-
 
 @receiver(post_save, sender=CardAdd)
 def post_save_card_create_ref_code(sender, instance, created, *args, **kwargs):
@@ -98,15 +83,3 @@ def post_save_card_create_ref_code(sender, instance, created, *args, **kwargs):
         link = "http://localhost:8000/card-link/%s" % (instance.ref_code)
         instance.card_link = link
         instance.save()
-
-
-# @receiver(pre_save, sender=BackgroundImage)
-# def pre_save_base64_text(sender, instance, *args, **kwargs):
-#     if instance.base64 == "":
-#         img = decodeDesignImage(instance.image)
-#         img_io = io.BytesIO()
-#         img.save(img_io, format='JPEG')
-#         instance.base64 = InMemoryUploadedFile(
-#             img_io, field_name=None, name=instance.name+instance.id+".jpg", content_type='image/jpeg', size=img_io.tell, charset=None)
-        # instance.save()
-        # instance.base64 = str(imgb64)

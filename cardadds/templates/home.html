@@ -37,7 +37,7 @@
                                                         <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
                                                     </div>
                                                     <strong>{{ card.business_name|title }}</strong> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
-                                                    <small>{{ card.title|title }}</small> <br>
+                                                    <small>{{ card.title|title}}</small> <br>
                                                     <small class="text-muted">{% if card.is_posted %}<span>Shared</span> | {% endif %}Preview card link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{request.path}}{% url 'cards:card-link' card.ref_code %}</a></small> <br>
                                                     <small class="text-muted">Created: {{ card.created|date }} | Updated: {{card.updated|date}}</small><br>
                                                     {% if card.updated_by %}
@@ -72,7 +72,7 @@
                                 <br>
                                 <small class="text-muted">Created: {{card.created|timesince}} ago</small>
                                 <br>
-                                <small class="text-muted">{% if card.created > card.updated %}{% else %}Updated: {{card.updated|timesince}} ago{% endif %}</small>
+                                <small class="text-muted">{% ifchanged card.updated %}Updated: {{card.updated|timesince}} ago by @{{card.updated_by|title}}{% else %}{% endifchanged %}</small>
                             </p>
                         </div>
                     </div>

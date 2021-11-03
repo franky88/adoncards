@@ -56,7 +56,7 @@ def card_link(request, *args, **kwargs):
         "title": "card details",
         "instance": data
     }
-    return render(request, "card_link.html", context)
+    return render(request, "popup_card.html", context)
 
 
 @login_required()
