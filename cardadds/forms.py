@@ -9,7 +9,7 @@ class CardAddForm(forms.ModelForm):
     # required_css_class = 'required-field'
     business_name = forms.CharField(max_length=50, help_text='50 characters max.',
                                     widget=forms.TextInput(attrs={'class': 'form-control'}))
-    title = forms.CharField(max_length=40, help_text='40 characters max.', required=False,
+    title = forms.CharField(label='Content title', max_length=40, help_text='40 characters max.', required=False,
                             widget=forms.TextInput(attrs={'class': 'form-control'}))
     content = forms.CharField(max_length=100, help_text='100 characters max.', required=False, widget=forms.Textarea(
         attrs={'class': 'form-control', 'rows': '3'}))

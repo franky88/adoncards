@@ -7,7 +7,7 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Roboto+Slab:wght@400;700&family=Scheherazade+New:wght@400;700&family=Sunshiney&display=swap');
 		{% if instance.image.name == "Christmas theme 1" %}
-        .card-container	{
+        #card-container	{
 			width: 400px;
 			height: 494px;
 			background: url('{{instance.image.image.url}}');
@@ -37,11 +37,7 @@
 			background-position: center;
 			background-size: contain;
 			display: grid;
-			{% if instance.promotional_offer %}
 			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			{% else %}
-			grid-template-rows: 1fr 1fr 1fr 1fr;
-			{% endif %}
 			/*align-content: center;*/
 			/*gap: 20px;*/
 		}
@@ -50,16 +46,12 @@
 			align-content: center;
 			font-size: 40px;
             margin-top: -20px;
-            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             padding: 10px;
 			font-family: 'Ephesis';
 			font-weight: normal;
             margin: auto;
-			color: #956c2e;
+			color: #bf9b3d;
 			line-height: 1;
-            color: #f7f4b8;
 		}
 		.content {
 			width: 250px;
@@ -133,7 +125,7 @@
 		}
         {% endif %}
         {% if instance.image.name == "Christmas theme 2" %}
-        .card-container	{
+        #card-container	{
 			width: 400px;
 			height: 494px;
 			background: url('{{instance.image.image.url}}');
@@ -163,11 +155,7 @@
 			background-position: center;
 			background-size: contain;
 			display: grid;
-			{% if instance.promotional_offer %}
 			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			{% else %}
-			grid-template-rows: 1fr 1fr 1fr 1fr;
-			{% endif %}
 			/*align-content: center;*/
 			/*gap: 20px;*/
 		}
@@ -176,14 +164,14 @@
 			align-content: center;
 			font-size: 40px;
             margin-top: -30px;
-            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
+            /* background: -webkit-linear-gradient(#e7d580, #bf9b3d);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent; */
             padding: 10px;
 			font-family: 'Ephesis';
 			font-weight: normal;
             margin: auto;
-			color: #bc8d1b;
+			color: #bf9b3d;
 			line-height: 1;
 		}
 		.content {
@@ -258,7 +246,7 @@
 		}
         {% endif %}
         {% if instance.image.name == "Christmas theme 3" %}
-        .card-container	{
+        #card-container	{
 			width: 400px;
 			height: 494px;
 			background: url('{{instance.image.image.url}}');
@@ -301,9 +289,9 @@
 			align-content: center;
 			font-size: 40px;
             margin-top: -20px;
-            background: -webkit-linear-gradient(#e7d580, #bf9b3d);
+            /* background: -webkit-linear-gradient(#e7d580, #bf9b3d);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent; */
             padding: 10px;
 			font-family: 'Ephesis';
 			font-weight: bold;
@@ -385,7 +373,9 @@
 </head>
 <body>
     {% if instance.image.name == "Christmas theme 1" %}
-	<div class="card-container">
+	<img hidden src="{{ instance.image.image.url }}" alt="" >
+	<span hidden id="business-name">{{ instance.business_name }}</span>
+	<div id="card-container">
 		<div class="card-holder center">
 			<div class="content">
 				<p>
@@ -422,7 +412,9 @@
 	</div>
     {% endif %}
     {% if instance.image.name == "Christmas theme 2" %}
-	<div class="card-container">
+	<img hidden src="{{ instance.image.image.url }}" alt="" >
+	<span hidden id="business-name">{{ instance.business_name }}</span>
+	<div id="card-container">
 		<div class="card-holder center">
 			<div class="content">
 				<p>
@@ -459,7 +451,9 @@
 	</div>
     {% endif %}
     {% if instance.image.name == "Christmas theme 3" %}
-	<div class="card-container">
+	<img hidden src="{{ instance.image.image.url }}" alt="" >
+	<span hidden id="business-name">{{ instance.business_name }}</span>
+	<div id="card-container">
 		<div class="card-holder center">
 			<div class="content">
 				<p>
@@ -496,5 +490,49 @@
 		</div>
 	</div>
     {% endif %}
+	<div style="margin: auto; text-align: center; position: inherit;">
+		<button id="dl-image">Download</button>
+	</div>
+	<!-- <button style="margin: auto; text-align: center;" id="dl-image">Download</button> -->
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script>
+		const businessName = document.getElementById('business-name').textContent;
+		// console.log('sample ',businessName)
+		document.getElementById('dl-image').onclick = function() {
+			const screenshotTarget = document.getElementById('card-container');
+			html2canvas(screenshotTarget, {
+				scale: 2
+			}).then((canvas) => {
+				const base64image = canvas.toDataURL('image/jpeg', 1.0);
+				console.log(base64image)
+				var anchor = document.createElement('a');
+				anchor.setAttribute('href', base64image);
+				anchor.setAttribute('download', businessName+'.jpg');
+				anchor.click();
+				anchor.remove();
+			});
+		}
+	</script>
+	<!-- <script>
+		async function parseURI(d){
+		var reader = new FileReader();    /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
+		reader.readAsDataURL(d);          /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
+		return new Promise((res,rej)=> {  /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
+			reader.onload = (e) => {        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
+			res(e.target.result)
+			}
+		})
+		} 
+
+		async function getDataBlob(url){
+			var res = await fetch(url);
+			var blob = await res.blob();
+			var uri = await parseURI(blob);
+			console.log(uri)
+			return uri;
+		}
+
+		getDataBlob("http://localhost:8000/media/image_2/2.jpg");
+	</script> -->
 </body>
 </html>
