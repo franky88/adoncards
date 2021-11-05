@@ -3,6 +3,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+handler400 = 'cardadds.views.handler400'
+handler403 = 'cardadds.views.handler403'
+handler404 = 'cardadds.views.handler404'
+handler500 = 'cardadds.views.handler500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('cardadds.urls')),

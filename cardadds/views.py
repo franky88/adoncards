@@ -25,6 +25,7 @@ def home(request):
     return render(request, "home.html", context)
 
 
+@login_required()
 def add_user(request):
     form = UserCreationForm(request.POST or None)
     if request.method == "POST":
@@ -111,3 +112,19 @@ def delete_card(request, *args, **kwargs):
         "instance": data
     }
     return render(request, "delete.html", context)
+
+
+def handler400(request, exception):
+    return render(request, 'errors/400.html', status=400)
+
+
+def handler403(request, exception):
+    return render(request, 'errors/403.html', status=403)
+
+
+def handler404(request, exception):
+    return render(request, 'errors/404.html', status=404)
+
+
+def handler500(request):
+    return render(request, 'errors/500.html', status=500)
