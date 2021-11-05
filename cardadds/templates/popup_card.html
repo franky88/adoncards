@@ -9,7 +9,7 @@
 		{% if instance.image.name == "Christmas theme 1" %}
         #card-container	{
 			width: 400px;
-			height: 494px;
+			height: 488px;
 			background: url('{{instance.image.image.url}}');
 			margin: 0;
 			position: absolute;
@@ -89,7 +89,11 @@
 			align-content: center;
 			margin: auto;
 			/*margin-top: 50px;*/
-            font-size: 30px;
+			{% if instance.promotional_offer|length >= 20 %}
+            font-size: 20px;
+			{% else %}
+			font-size: 30px;
+			{% endif %}
             font-family: 'Scheherazade New';
             font-weight: bold;
             line-height: 1;
@@ -127,7 +131,7 @@
         {% if instance.image.name == "Christmas theme 2" %}
         #card-container	{
 			width: 400px;
-			height: 494px;
+			height: 488px;
 			background: url('{{instance.image.image.url}}');
 			margin: 0;
 			position: absolute;
@@ -210,11 +214,15 @@
 			align-content: center;
 			margin: auto;
 			/*margin-top: 50px;*/
-            font-size: 30px;
+            {% if instance.promotional_offer|length >= 20 %}
+            font-size: 20px;
+			{% else %}
+			font-size: 30px;
+			{% endif %}
             font-family: 'Scheherazade New';
             font-weight: bold;
             border: 1px solid rgb(245, 143, 26);
-            color:#956c2e;
+            color: #956c2e;
             padding: 8px 20px;
             line-height: 1;
             font-style: italic;
@@ -248,7 +256,7 @@
         {% if instance.image.name == "Christmas theme 3" %}
         #card-container	{
 			width: 400px;
-			height: 494px;
+			height: 488px;
 			background: url('{{instance.image.image.url}}');
 			margin: 0;
 			position: absolute;
@@ -335,11 +343,15 @@
 			align-content: center;
 			margin: auto;
 			/* margin-top: 50px; */
-            font-size: 30px;
+            {% if instance.promotional_offer|length >= 20 %}
+            font-size: 20px;
+			{% else %}
+			font-size: 30px;
+			{% endif %}
             font-family: 'Scheherazade New';
             font-weight: bold;
             border: 1px solid rgb(255, 255, 255);
-            color:#fff;
+            color: #fff;
             padding: 8px 20px;
             line-height: 1;
 		}

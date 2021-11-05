@@ -17,7 +17,7 @@ class CardAddForm(forms.ModelForm):
                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
     promotion_content = forms.CharField(max_length=100, help_text='100 characters max.', required=False,
                                         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
-    promotional_offer = forms.CharField(max_length=20, help_text='20 characters max.', required=False,
+    promotional_offer = forms.CharField(max_length=40, help_text='40 characters max.', required=False,
                                         widget=forms.TextInput(attrs={'class': 'form-control'}))
     business_reinstatement = forms.CharField(max_length=100, help_text='100 characters max.', required=False,
                                              widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}))
