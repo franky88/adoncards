@@ -11,9 +11,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'cards:home' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    {% if perms.auth.view_user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add Theme</a>
+                        <a class="nav-link" href="#">Users</a>
                     </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav mr-rigth">
                     <li class="nav-item dropdown">
@@ -23,6 +25,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- <a class="dropdown-item" href="#">Profile</a> -->
                             <a class="dropdown-item" href="{%url 'password_change'%}">Change password</a>
+                            {% if perms.auth.add_user %}
+                            <a class="dropdown-item" href="{%url 'cards:add-user'%}">Add user</a>
+                            {% endif %}
                             <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
                         </div>
                     </li>

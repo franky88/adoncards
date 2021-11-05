@@ -6,6 +6,7 @@ from . import views
 app_name = "cards"
 urlpatterns = [
     path('', views.home, name="home"),
+    path('add-user/', views.add_user, name="add-user"),
     path('details/<str:ref_code>/', views.delete_card, name="card-delete"),
     path('card-link/<str:ref_code>/', views.card_link, name="card-link"),
     path('create-card/', views.create_card, name="create-card"),

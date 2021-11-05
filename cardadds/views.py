@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.views import PasswordChangeView
 from cardadds.models import CardAdd, BackgroundImage, CardCategory
 from .forms import CardAddForm
@@ -23,6 +23,24 @@ def home(request):
         "card_activity": card_activity
     }
     return render(request, "home.html", context)
+
+
+def add_user(request):
+    form = UserCreationForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'User successfully created name: %s.' % (instance.username.title))
+            return redirect('cards:home')
+    else:
+        form = UserCreationForm(request.POST or None)
+    context = {
+        'title': 'add user',
+        'form': form
+    }
+    return render(request, 'registration/register_user.html', context)
 
 
 @login_required()
