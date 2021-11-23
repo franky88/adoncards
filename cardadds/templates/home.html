@@ -35,6 +35,10 @@
                                         </div>
                                         <div class="col-md-9">
                                             <div class="card-body">
+                                                <div class="float-right ml-3">
+                                                    <a href="{% url 'cards:update-card' card.ref_code %}" class="btn btn-outline-info btn-sm">Update</a>
+                                                    <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                </div>
                                                 <strong>{{ card.business_name|title }}</strong> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
                                                 <small>{{ card.title|title}}</small> <br>
                                                 <small class="text-muted">{% if card.is_posted %}<span>Shared</span> | {% endif %}Preview card link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{request.path}}{% url 'cards:card-link' card.ref_code %}</a></small> <br>
@@ -42,11 +46,6 @@
                                                 {% if card.updated_by %}
                                                 <small class="text-muted">Updated by: {{ card.updated_by.username|title }}</small>
                                                 {% endif %}
-                                                <br>
-                                                <div class="float-left">
-                                                    <a href="{% url 'cards:update-card' card.ref_code %}" class="btn btn-outline-info btn-sm">Update</a>
-                                                    <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
