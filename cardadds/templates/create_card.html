@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <nav aria-label="breadcrumb">
@@ -8,8 +8,8 @@
     </ol>
 </nav>
 <div class="row">
-    <div class="col-sm-9">
-        <div class="card">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
             <div class="card-header">
                 <strong>{{title|title}}</strong>
             </div>
@@ -33,25 +33,31 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary btn-sm">Back</a>
-                    <input type="submit" value="Submit" class="btn btn-primary btn-sm float-right">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
                 </div>
             </form>
         </div>
         <br>
     </div>
-    <div class="col-sm-3">
-        <h4>Background Theme</h4>
-        <div class="row row-cols-1 row-cols-md-2">
-        {% for img in themes %}
-            <div class="col mb-4 mt-4">
-              <div class="card">
-                <img src="{{ img.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <small class="card-title">{{img.name}}</small>
-                </div>
-              </div>
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <strong>Background Theme</strong>
             </div>
-        {% endfor %}
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-2">
+                    {% for img in themes %}
+                        <div class="col mb-4 mt-4">
+                          <div class="card">
+                            <img src="{{ img.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <small class="card-title">{{img.name}}</small>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

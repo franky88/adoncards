@@ -1,29 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 <div class="row">
-    <div class="col-sm-8">
-
-    </div>
-    <div class="col-sm-4">
-        <div class="d-flex flex-column">
-            <div class="card">
-                <div class="card-header">
-                    <strong>{{title|title}}</strong>
-                </div>
-                <form method="post" action="">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                {{title|title}}
+            </div>
+            <form method="POST">
+                {% csrf_token %}
                 <div class="card-body">
-                    {% csrf_token %}
                     {{form|crispy}}
                 </div>
                 <div class="card-footer">
-                    <input class="btn btn-primary btn-sm" type="submit" value="Add user" />
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn-sm">Add User</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<br>
 {% endblock %}

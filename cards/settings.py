@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cardadds.apps.CardaddsConfig',
+    'xmaspops.apps.XmaspopsConfig',
     'storages',
     'crispy_forms',
 ]

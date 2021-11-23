@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Ephesis&family=Scheherazade New+Slab:wght@400;700&family=Scheherazade+New:wght@400;700&family=Sunshiney&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .card-container {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+
+        .card-background-1 {
+            background-image: url('{{ instance.theme.image.url }}');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-background-1 > h5 {
+            font-family: 'Ephesis';
+            color: #bf9b3d;
+            width: 80%;
+            font-size: 3rem;
+            text-align: center;
+        }
+        .card-background-1 > p {
+            color: #ffffff;
+            font-family: 'Scheherazade New';
+            font-size: 1.4rem;
+            text-align: center;
+            width: 60%;
+            line-height: 1;
+            padding: 20px;
+            font-style: italic;
+        }
+
+
+        .card-background-2 {
+            background-image: url('{{ instance.theme.image.url }}');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-background-2 > h5 {
+            font-family: 'Ephesis';
+            color: #bf9b3d;
+            width: 80%;
+            font-size: 3rem;
+            text-align: center;
+        }
+        .card-background-2 > p {
+            color: #bf9b3d;
+            font-family: 'Scheherazade New';
+            font-size: 1.4rem;
+            text-align: center;
+            width: 60%;
+            line-height: 1;
+            padding: 20px;
+            font-style: italic;
+        }
+
+
+        .card-background-3 {
+            background-image: url('{{ instance.theme.image.url }}');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-background-3 > h5 {
+            font-family: 'Ephesis';
+            color: #bf9b3d;
+            width: 80%;
+            font-size: 3rem;
+            text-align: center;
+        }
+        .card-background-3 > p {
+            color: #ffffff;
+            font-family: 'Scheherazade New';
+            font-size: 1.4rem;
+            text-align: center;
+            width: 60%;
+            line-height: 1;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        button {
+            background-color: #4E73DF;
+            padding: 8px;
+            border: none;
+            color: #fff;
+            border-radius: 3px;
+        }
+        button:hover {
+            background-color: #4769cf;
+            padding: 8px;
+            border: none;
+            color: #fff;
+            border-radius: 3px;
+        }
+        a {
+            text-decoration: none;
+            padding: 8px;
+            background-color: #4E73DF;
+            color: #fff;
+            border-radius: 3px;
+        }
+    </style>
+    <title>{{ instance.business_name|title }}</title>
+</head>
+<body>
+    <div class="card-container">
+        {% if instance.theme.name == "Christmas theme 1" %}
+        <span hidden id="business-name">{{ instance.business_name }}</span>
+        <div class="card-background-1" id="card-image">
+            <p>{{instance.content}}</p>
+            <h5>{{instance.title|title}}</h5>
+            <p>{{instance.reinstatement}}</p>
+        </div>
+        {% endif %}
+        {% if instance.theme.name == "Christmas theme 2" %}
+        <span hidden id="business-name">{{ instance.business_name }}</span>
+        <div class="card-background-2" id="card-image">
+            <p>{{instance.content}}</p>
+            <h5>{{instance.title|title}}</h5>
+            <p>{{instance.reinstatement}}</p>
+        </div>
+        {% endif %}
+        {% if instance.theme.name == "Christmas theme 3" %}
+        <span hidden id="business-name">{{ instance.business_name }}</span>
+        <div class="card-background-3" id="card-image">
+            <p>{{instance.content}}</p>
+            <h5>{{instance.title|title}}</h5>
+            <p>{{instance.reinstatement}}</p>
+        </div>
+        {% endif %}
+        <div class="actions">
+            <button><a href="{{request.META.HTTP_REFERER}}">Back</a> </button>
+            <button id="dl-image">Download Image</button>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script>
+		const businessName = document.getElementById('business-name').textContent;
+		// console.log('sample ',businessName)
+		document.getElementById('dl-image').onclick = function() {
+			const screenshotTarget = document.getElementById('card-image');
+			html2canvas(screenshotTarget, {
+				scale: 2
+			}).then((canvas) => {
+				const base64image = canvas.toDataURL('image/jpeg', 1.0);
+				console.log(base64image)
+				var anchor = document.createElement('a');
+				anchor.setAttribute('href', base64image);
+				anchor.setAttribute('download', businessName+'.jpg');
+				anchor.click();
+				anchor.remove();
+			});
+		}
+	</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <nav aria-label="breadcrumb">
@@ -9,8 +9,8 @@
 </nav>
 {% include 'messages.html' %}
 <div class="row">
-    <div class="col-sm-8">
-        <div class="card">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
             <div class="card-header">
                 <strong>{{title|title}}</strong>
             </div>
@@ -35,15 +35,15 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary btn-sm">Back</a>
-                    <input type="submit" value="Submit" class="btn btn-primary btn-sm float-right">
+                    <input type="submit" value="Update" class="btn btn-primary btn-sm">
                 </div>
             </form>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-xl-4 col-lg-5">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card shadow mb-4">
                     <div class="card-header">
                         <strong>Card details</strong>
                         <div class="float-right">

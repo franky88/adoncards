@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main.html" %}
 
 {% block content %}
 <nav aria-label="breadcrumb">
@@ -7,81 +7,83 @@
     </ol>
 </nav>
 {% include 'messages.html' %}
-<div>
-    <a href="{% url 'cards:create-card' %}" class="float-right btn btn-primary btn-sm">Create Card</a>
-    <h3>Card List</h3>
-    <hr>
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-hover" id="cards">
-                        <thead>
-                            <tr>
-                                <th>Business name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for card in cards %}
-                            <tr>
-                                <td>
-                                    <div class="card mb-3">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-3">
-                                                <img src="{{card.image.image.url}}" alt="" style="width: 100%;">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="card-body">
-                                                    <div class="float-right ml-3">
-                                                        <a href="{% url 'cards:update-card' card.ref_code %}" class="btn btn-outline-info btn-sm">Update</a>
-                                                        <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
-                                                    </div>
-                                                    <strong>{{ card.business_name|title }}</strong> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
-                                                    <small>{{ card.title|title}}</small> <br>
-                                                    <small class="text-muted">{% if card.is_posted %}<span>Shared</span> | {% endif %}Preview card link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{request.path}}{% url 'cards:card-link' card.ref_code %}</a></small> <br>
-                                                    <small class="text-muted">Created: {{ card.created|date }} | Updated: {{card.updated|date}}</small><br>
-                                                    {% if card.updated_by %}
-                                                    <small class="text-muted">Updated by: {{ card.updated_by.username|title }}</small>
-                                                    {% endif %}
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary float-left">{{title|title}}</h6>
+                <a href="{% url 'cards:create-card' %}" class="float-right btn btn-primary btn-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i> 
+                    Create Card
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover" id="cards">
+                    <thead>
+                        <tr>
+                            <th>Business name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for card in cards %}
+                        <tr>
+                            <td>
+                                <div class="card mb-3">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-3">
+                                            <img src="{{card.image.image.url}}" alt="" style="width: 100%;">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body">
+                                                <strong>{{ card.business_name|title }}</strong> | <small class="text-muted">Created by: <a href="">@{{card.created_by.username}}</a></small> <br>
+                                                <small>{{ card.title|title}}</small> <br>
+                                                <small class="text-muted">{% if card.is_posted %}<span>Shared</span> | {% endif %}Preview card link: <a href="{% url 'cards:card-link' card.ref_code %}" target="_blank">{{request.path}}{% url 'cards:card-link' card.ref_code %}</a></small> <br>
+                                                <small class="text-muted">Created: {{ card.created|date }} | Updated: {{card.updated|date}}</small><br>
+                                                {% if card.updated_by %}
+                                                <small class="text-muted">Updated by: {{ card.updated_by.username|title }}</small>
+                                                {% endif %}
+                                                <br>
+                                                <div class="float-left">
+                                                    <a href="{% url 'cards:update-card' card.ref_code %}" class="btn btn-outline-info btn-sm">Update</a>
+                                                    <a href="{% url 'cards:card-delete' card.ref_code %}" class="btn btn-outline-danger btn-sm">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card bg-light">
-                <div class="card-header">
-                    <strong>Resent Activities</strong>
-                </div>
-                <div class="card-body">
-                    {% for card in card_activity %}
-                    <div class="card">
-                        <div class="card-body">
-                            <p>
-                                <a href="{% url 'cards:update-card' card.ref_code %}">{{card.business_name|title}}</a><br>
-                                <small class="text-muted">Created by: @{{card.created_by.username|title}}</small>
-                                <hr>
-                                <small>Card link: <a href="{% url 'cards:card-link' card.ref_code %}">{% url 'cards:card-link' card.ref_code %}</a></small>
-                                <br>
-                                <small class="text-muted">Created: {{card.created|timesince}} ago</small>
-                                <br>
-                                <small class="text-muted">{% ifchanged card.updated %}Updated: {{card.updated|timesince}} ago by @{{card.updated_by|title}}{% else %}{% endifchanged %}</small>
-                            </p>
-                        </div>
-                    </div>
-                    <br>
-                    {% endfor %}
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <br>
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <strong class="m-0 font-weight-bold text-primary">Resent Activities</strong>
+            </div>
+            <div class="card-body">
+                {% for card in card_activity %}
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            <a href="{% url 'cards:update-card' card.ref_code %}">{{card.business_name|title}}</a><br>
+                            <small class="text-muted">Created by: @{{card.created_by.username|title}}</small>
+                            <hr>
+                            <small>Card link: <a href="{% url 'cards:card-link' card.ref_code %}">{% url 'cards:card-link' card.ref_code %}</a></small>
+                            <br>
+                            <small class="text-muted">Created: {{card.created|timesince}} ago</small>
+                            <br>
+                            <small class="text-muted">{% ifchanged card.updated %}Updated: {{card.updated|timesince}} ago by @{{card.updated_by|title}}{% else %}{% endifchanged %}</small>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

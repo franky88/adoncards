@@ -1,12 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block login %}
 <div class="row">
-    <div class="col-sm-4 offset-sm-4">
+    <div class="col-sm-4 offset-sm-4 mt-5">
         <div class="d-flex flex-column">
             <div class="d-flex flex-column align-items-center">
-                <img src="{% static 'AOG.png' %}" alt="" style="width: 150px;">
+                <img src="{% static 'images/AOG-logo_black.png' %}" alt="" style="width: 150px;">
                 <br>
                 <div>
                     {% if next %}

@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'popups:home' %}">Cards</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{title|title}}</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                {{title|title}}
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    {{form|crispy}}
+                </div>
+                <div class="card-footer">
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Card Preview</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="card bg-dark text-white">
+                    <img src="{{instance.theme.image.url}}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                        {% if instance.theme.name == "Christmas theme 1" %}
+                        <div class="card-preview-1">
+                            <p class="card-text">{{ instance.content }}</p>
+                            <h5 class="card-title">{{instance.title|title}}</h5>
+                            <p class="card-text">{{ instance.reinstatement }}</p>
+                        </div>
+                        {% endif %}
+                        {% if instance.theme.name == "Christmas theme 2" %}
+                        <div class="card-preview-2">
+                            <p class="card-text">{{ instance.content }}</p>
+                            <h5 class="card-title">{{instance.title|title}}</h5>
+                            <p class="card-text">{{ instance.reinstatement }}</p>
+                        </div>
+                        {% endif %}
+                        {% if instance.theme.name == "Christmas theme 3" %}
+                        <div class="card-preview-3">
+                            <p class="card-text">{{ instance.content }}</p>
+                            <h5 class="card-title">{{instance.title|title}}</h5>
+                            <p class="card-text">{{ instance.reinstatement }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <a href="{% url 'popups:preview' instance.ref_code %}" class="btn btn-outline-info btn-sm">Preview Card</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
