@@ -541,11 +541,14 @@
 		// console.log('sample ',businessName)
 		document.getElementById('dl-image').onclick = function() {
 			const screenshotTarget = document.getElementById('card-container');
+			const targetStyle = getComputedStyle(screenshotTarget)
+			// console.log("width: ", targetStyle.width)
 			html2canvas(screenshotTarget, {
-				scale: 2
+				scale: 8
 			}).then((canvas) => {
+
 				const base64image = canvas.toDataURL('image/jpeg', 1.0);
-				console.log(base64image)
+				// console.log(base64image)
 				var anchor = document.createElement('a');
 				anchor.setAttribute('href', base64image);
 				anchor.setAttribute('download', businessName+'.jpg');
@@ -554,26 +557,5 @@
 			});
 		}
 	</script>
-	<!-- <script>
-		async function parseURI(d){
-		var reader = new FileReader();    /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader */
-		reader.readAsDataURL(d);          /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL */
-		return new Promise((res,rej)=> {  /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise */
-			reader.onload = (e) => {        /* https://developer.mozilla.org/en-US/docs/Web/API/FileReader/onload */
-			res(e.target.result)
-			}
-		})
-		} 
-
-		async function getDataBlob(url){
-			var res = await fetch(url);
-			var blob = await res.blob();
-			var uri = await parseURI(blob);
-			console.log(uri)
-			return uri;
-		}
-
-		getDataBlob("http://localhost:8000/media/image_2/2.jpg");
-	</script> -->
 </body>
 </html>

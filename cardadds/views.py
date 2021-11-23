@@ -33,7 +33,7 @@ def add_user(request):
             instance = form.save(commit=False)
             instance.save()
             messages.add_message(request, messages.SUCCESS,
-                                 'User successfully created name: %s.' % (instance.username.title))
+                                 'User successfully created name: %s.' % (instance.username.title()))
             return redirect('cards:home')
     else:
         form = UserCreationForm(request.POST or None)
