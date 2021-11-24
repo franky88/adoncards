@@ -36,10 +36,10 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
-			display: grid;
-			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			/*align-content: center;*/
-			/*gap: 20px;*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
 		}
 		.title {
 			display: grid;
@@ -158,10 +158,10 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
-			display: grid;
-			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			/*align-content: center;*/
-			/*gap: 20px;*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
 		}
 		.title {
 			display: grid;
@@ -283,14 +283,10 @@
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
-			display: grid;
-			{% if instance.promotional_offer %}
-			grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-			{% else %}
-			grid-template-rows: 1fr 1fr 1fr 1fr;
-			{% endif %}
-			/*align-content: center;*/
-			/*gap: 20px;*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
 		}
 		.title {
 			display: grid;
@@ -414,37 +410,52 @@
 		<span hidden id="business-name">{{ instance.business_name }}</span>
 		<div id="card-container">
 			<div class="card-holder center">
+				{% if instance.content %}
 				<div class="content">
 					<p>
 						{{instance.content}}
 					</p>
-				</div>	
+				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.title %}
 				<div class="title">
 					<strong>
 						{{instance.title|title}}
 					</strong> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.closing_content %}
 				<div class="content-2">
 					<p>
 						{{instance.closing_content}}
 					</p>
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotion_content %}
 				<div class="promotional-text">
 					<p>
 						{{instance.promotion_content}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotional_offer %}
 				<div class="text-box">
-					{% if instance.promotional_offer %}
 					<small>{{instance.promotional_offer|upper}}</small>
-					{% else %}
-					{% endif %}
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.business_reinstatement %}
 				<div class="business_reinstatement">
 					<p>
 						{{instance.business_reinstatement}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
 			</div>
 			
 		</div>
@@ -454,37 +465,52 @@
 		<span hidden id="business-name">{{ instance.business_name }}</span>
 		<div id="card-container">
 			<div class="card-holder center">
+				{% if instance.content %}
 				<div class="content">
 					<p>
 						{{instance.content}}
 					</p>
-				</div>	
+				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.title %}
 				<div class="title">
 					<strong>
 						{{instance.title|title}}
 					</strong> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.closing_content %}
 				<div class="content-2">
 					<p>
 						{{instance.closing_content}}
 					</p>
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotion_content %}
 				<div class="promotional-text">
 					<p>
 						{{instance.promotion_content}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotional_offer %}
 				<div class="text-box">
-					{% if instance.promotional_offer %}
 					<small>{{instance.promotional_offer|upper}}</small>
-					{% else %}
-					{% endif %}
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.business_reinstatement %}
 				<div class="business_reinstatement">
 					<p>
 						{{instance.business_reinstatement}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
 			</div>
 		</div>
 		{% endif %}
@@ -493,38 +519,52 @@
 		<span hidden id="business-name">{{ instance.business_name }}</span>
 		<div id="card-container">
 			<div class="card-holder center">
+				{% if instance.content %}
 				<div class="content">
 					<p>
 						{{instance.content}}
 					</p>
-				</div>	
+				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.title %}
 				<div class="title">
 					<strong>
 						{{instance.title|title}}
 					</strong> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.closing_content %}
 				<div class="content-2">
 					<p>
 						{{instance.closing_content}}
 					</p>
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotion_content %}
 				<div class="promotional-text">
 					<p>
 						{{instance.promotion_content}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.promotional_offer %}
 				<div class="text-box">
-					{% if instance.promotional_offer %}
 					<small>{{instance.promotional_offer|upper}}</small>
-					{% else %}
-					
-					{% endif %}
 				</div>
+				{% else %}
+				{% endif %}
+				{% if instance.business_reinstatement %}
 				<div class="business_reinstatement">
 					<p>
 						{{instance.business_reinstatement}}
 					</p> 
 				</div>
+				{% else %}
+				{% endif %}
 			</div>
 		</div>
 		{% endif %}
