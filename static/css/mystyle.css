@@ -11,19 +11,21 @@
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-1 > p {
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-1 > h5 {
@@ -59,19 +61,21 @@
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-2 > p {
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-2 > h5 {
@@ -107,19 +111,21 @@
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-3 > p {
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-3 > h5 {
