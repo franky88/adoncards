@@ -15,6 +15,7 @@
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-1 > p {
   text-align: center;
@@ -24,6 +25,7 @@
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-1 > h5 {
@@ -63,6 +65,7 @@
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-2 > p {
   text-align: center;
@@ -72,6 +75,7 @@
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-2 > h5 {
@@ -111,6 +115,7 @@
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0;
 }
 .card-preview-3 > p {
   text-align: center;
@@ -120,6 +125,7 @@
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
+  margin-bottom: 0px;
 }
 @media only screen and (max-width: 991px) {
   .card-preview-3 > h5 {
