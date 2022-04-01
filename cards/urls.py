@@ -10,8 +10,8 @@ handler500 = 'cardadds.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('cardadds.urls')),
-    path('christmas-cards/', include('xmaspops.urls')),
+    path('cards', include('cardadds.urls')),
+    path('', include('xmaspops.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:

@@ -88,7 +88,7 @@ def card_preview(request, *args, **kwargs):
     card_code = kwargs.get('ref_code')
     data = get_object_or_404(PopUp, ref_code=card_code)
     context = {
-        "title": "delete",
+        "title": "card preview",
         "instance": data
     }
-    return render(request, "card_preview.html", context)
+    return render(request, "card_preview_v2.html", context)
