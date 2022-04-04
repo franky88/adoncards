@@ -121,3 +121,18 @@ def all_image(request):
         "activities": activities
     }
     return render(request, "image_list.html", context)
+
+
+@login_required()
+def delete_image(request, pk):
+    instance = get_object_or_404(Theme, pk=pk)
+    if request.method == "POST":
+        instance.delete()
+        messages.add_message(request, messages.SUCCESS,
+                             'Card successfully deleted.')
+        return redirect('popups:image_list')
+    context = {
+        "title": "delete",
+        "instance": instance
+    }
+    return render(request, "delete_image.html", context)

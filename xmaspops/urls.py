@@ -10,4 +10,5 @@ urlpatterns = [
     path('card-preview/<str:ref_code>', views.card_preview, name="preview"),
     path('add-theme/', views.upload_image, name="add_image"),
     path('image-list/', views.all_image, name="image_list"),
+    path('delete-image/<pk>', views.delete_image, name="delete_image"),
 ]

@@ -21,9 +21,10 @@
                     {% for theme in images %}
                     <div class="card">
                         <img class="card-img-top" src="{{theme.image.url}}" alt="{{theme.name}}">
-                        <div class="card-body">
-                        <p class="card-title">{{theme.name|title}}</p>
+                        <div class="card-img-overlay">
+                            <a href="{%url 'popups:delete_image' theme.pk%}" class="btn btn-outline-danger btn-sm float-right">X</a>
                         </div>
+                        <p class="card-title" style="text-align: center;">{{theme.name|title}}</p>
                     </div>
                     {% endfor %}
                 </div>

@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 <nav aria-label="breadcrumb">
@@ -36,7 +37,11 @@
                                     <div class="card mb-3">
                                         <div class="row g-0">
                                           <div class="col-md-4">
-                                            <img src="{{card.theme.image.url}}" class="img-fluid rounded-start" alt="{{card.theme.image.url}}">
+                                            {% if card.theme.image %}
+                                                <img src="{{card.theme.image.url}}" class="img-fluid rounded-start" alt="{{card.theme.image.url}}">
+                                            {% else %}
+                                                <img src="{% static 'images/deleted_image.jpg' %}" class="img-fluid rounded-start" alt="deleted image">
+                                            {% endif %}
                                           </div>
                                           <div class="col-md-8">
                                             <div class="card-body">
