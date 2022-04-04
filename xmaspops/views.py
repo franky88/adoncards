@@ -97,14 +97,13 @@ def card_preview(request, *args, **kwargs):
 
 @login_required()
 def upload_image(request):
-    form = ThemeForms(request.POST or None, request.FILES or None)
     if request.method == "POST":
-        if form.is_valid:
-            instance = form.save(commit=False)
-            instance.save()
-            return redirect('popups:theme_details', pk=instance.pk)
-    else:
-        form = ThemeForms()
+        form = ThemeForms(request.POST, request.FILES)
+        if form.is_valid():
+            print(form)
+            form.save()
+        return redirect('popups:image_list')
+    form = ThemeForms()
     context = {
         "title": "add background image",
         "form": form,

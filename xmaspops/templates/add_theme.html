@@ -13,14 +13,14 @@
             <div class="card-header">
                 {{title|title}}
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="card-body">
                     {{form|crispy}}
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-outline-secondary btn-sm">Cancel</a>
-                    <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                    <input type="submit" class="btn btn-primary btn-sm" value="Upload">
                 </div>
             </form>
         </div>
