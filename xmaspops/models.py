@@ -13,7 +13,8 @@ def image_file_location(instance, filename):
 
 class Theme(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    image = models.ImageField(upload_to=image_file_location)
+    image = models.ImageField(upload_to=image_file_location,
+                              help_text="Upload squre image dimension")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -33,6 +34,8 @@ class PopUp(models.Model):
     content = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=200, null=True, blank=True)
     reinstatement = models.TextField(null=True, blank=True)
+    text_color = models.CharField(max_length=60, default="#000000",
+                                  help_text="You can add color name or color hex code for the text")
     theme = models.ForeignKey(Theme, on_delete=SET_NULL, null=True, default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

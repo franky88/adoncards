@@ -33,7 +33,7 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="card bg-dark text-white">
+                <!-- <div class="card bg-dark text-white">
                     <img src="{{instance.theme.image.url}}" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         {% if instance.theme.name == "Christmas theme 1" %}
@@ -57,6 +57,17 @@
                             <p class="card-text">{{ instance.reinstatement }}</p>
                         </div>
                         {% endif %}
+                    </div>
+                </div> -->
+                <div class="card bg-dark text-white" style="width: 100%; margin: auto;" id="card-image">
+                    <span hidden id="business-name">{{ instance.business_name }}</span>
+                    <img class="card-img" src="{{instance.theme.image.url}}" alt="Card image">
+                    <div class="card-img-overlay">
+                        <div id="text-details" class="d-flex flex-column align-items-stretch center" style="color: {{instance.text_color}};">
+                            <p class="card-text text-width" style="text-align: center;">{{instance.content}}</p>
+                            <h3 id="text-title" class="card-title text-width" style="text-align: center;">{{instance.title|upper}}</h3>
+                            <p id="text-bhours" class="card-text text-width" style="text-align: center; border: 1px solid {{instance.text_color}};">{{instance.reinstatement}}</p>
+                        </div>
                     </div>
                 </div>
                 <br>

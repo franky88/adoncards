@@ -1,3 +1,5 @@
+from dataclasses import field
+from pyexpat import model
 from django import forms
 from .models import PopUp, Theme
 from django.forms import widgets
@@ -11,9 +13,19 @@ class PopUpForms(forms.ModelForm):
             'content',
             'title',
             'reinstatement',
+            'text_color',
             'theme'
         ]
         widgets = {
             'content': widgets.Textarea(attrs={'rows': '3'}),
             'reinstatement': widgets.Textarea(attrs={'rows': '3'}),
         }
+
+
+class ThemeForms(forms.ModelForm):
+    class Meta:
+        model = Theme
+        fields = [
+            'name',
+            'image',
+        ]

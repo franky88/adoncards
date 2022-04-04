@@ -1,9 +1,10 @@
+from multiprocessing import context
 from django.http import request
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PopUpForms
+from .forms import PopUpForms, ThemeForms
 from .models import PopUp, Theme
 # Create your views here.
 
@@ -92,3 +93,32 @@ def card_preview(request, *args, **kwargs):
         "instance": data
     }
     return render(request, "card_preview_v2.html", context)
+
+
+@login_required()
+def upload_image(request):
+    form = ThemeForms(request.POST or None, request.FILES or None)
+    if request.method == "POST":
+        if form.is_valid:
+            instance = form.save(commit=False)
+            instance.save()
+            return redirect('popups:theme_details', pk=instance.pk)
+    else:
+        form = ThemeForms()
+    context = {
+        "title": "add background image",
+        "form": form,
+    }
+    return render(request, "add_theme.html", context)
+
+
+@login_required()
+def all_image(request):
+    images = Theme.objects.all()
+    activities = Theme.objects.all()[:3]
+    context = {
+        "title": "image list",
+        "images": images,
+        "activities": activities
+    }
+    return render(request, "image_list.html", context)

@@ -6,12 +6,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 .card-preview-1 > h5 {
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.8rem;
+  font-size: calc(24px + (30 - 24) * ((100vw - 300px) / (1600 - 300)));
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
@@ -21,32 +22,11 @@
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.8rem;
+  font-size: calc(08px + (12 - 08) * ((100vw - 300px) / (1600 - 300)));
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
   margin-bottom: 0px;
-}
-@media only screen and (max-width: 991px) {
-  .card-preview-1 > h5 {
-    text-align: center;
-    font-family: "Ephesis";
-    width: 90%;
-    font-size: 5rem;
-    color: #bf9b3d;
-    font-weight: normal;
-    line-height: 1;
-  }
-  .card-preview-1 > p {
-    text-align: center;
-    font-family: "Scheherazade New";
-    width: 70%;
-    font-size: 1.5rem;
-    color: #ffffff;
-    font-weight: normal;
-    line-height: 1;
-    padding: 20px;
-  }
 }
 
 .card-preview-2 {
@@ -56,12 +36,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 .card-preview-2 > h5 {
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.8rem;
+  font-size: calc(24px + (30 - 24) * ((100vw - 300px) / (1600 - 300)));
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
@@ -71,32 +52,11 @@
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.8rem;
+  font-size: calc(08px + (12 - 08) * ((100vw - 300px) / (1600 - 300)));
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
   margin-bottom: 0px;
-}
-@media only screen and (max-width: 991px) {
-  .card-preview-2 > h5 {
-    text-align: center;
-    font-family: "Ephesis";
-    width: 90%;
-    font-size: 5rem;
-    color: #bf9b3d;
-    font-weight: normal;
-    line-height: 1;
-  }
-  .card-preview-2 > p {
-    text-align: center;
-    font-family: "Scheherazade New";
-    width: 70%;
-    font-size: 1.5rem;
-    color: #bf9b3d;
-    font-weight: normal;
-    line-height: 1;
-    padding: 20px;
-  }
 }
 
 .card-preview-3 {
@@ -106,12 +66,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
 .card-preview-3 > h5 {
   text-align: center;
   font-family: "Ephesis";
   width: 90%;
-  font-size: 1.8rem;
+  font-size: calc(24px + (30 - 24) * ((100vw - 300px) / (1600 - 300)));
   color: #bf9b3d;
   font-weight: normal;
   line-height: 1;
@@ -121,30 +82,43 @@
   text-align: center;
   font-family: "Scheherazade New";
   width: 70%;
-  font-size: 0.8rem;
+  font-size: calc(08px + (12 - 08) * ((100vw - 300px) / (1600 - 300)));
   color: #ffffff;
   font-weight: normal;
   line-height: 1;
   margin-bottom: 0px;
 }
-@media only screen and (max-width: 991px) {
-  .card-preview-3 > h5 {
-    text-align: center;
-    font-family: "Ephesis";
-    width: 90%;
-    font-size: 5rem;
-    color: #bf9b3d;
-    font-weight: normal;
-    line-height: 1;
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
   }
-  .card-preview-3 > p {
-    text-align: center;
-    font-family: "Scheherazade New";
-    width: 70%;
-    font-size: 1.5rem;
-    color: #ffffff;
-    font-weight: normal;
-    line-height: 1;
-    padding: 20px;
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
   }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.text-color {
+  color: {{instance.text_color}};
+}
+.text-width {
+  width: 300px;
+}
+#text-title {
+  font-weight: bold;
+}
+#text-bhours {
+  border: 1px solid {{instance.text_color}};
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 3px;
 }
