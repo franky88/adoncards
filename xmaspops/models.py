@@ -35,7 +35,7 @@ class PopUp(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     reinstatement = models.TextField(null=True, blank=True)
     text_color = models.CharField(max_length=60, default="#000000",
-                                  help_text="You can add color name or color hex code for the text")
+                                  help_text="You can customized text color")
     theme = models.ForeignKey(Theme, on_delete=SET_NULL, null=True, default=1)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

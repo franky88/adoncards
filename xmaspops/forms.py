@@ -1,6 +1,7 @@
 from dataclasses import field
 from pyexpat import model
 from django import forms
+from django.forms.widgets import TextInput
 from .models import PopUp, Theme
 from django.forms import widgets
 
@@ -19,6 +20,7 @@ class PopUpForms(forms.ModelForm):
         widgets = {
             'content': widgets.Textarea(attrs={'rows': '3'}),
             'reinstatement': widgets.Textarea(attrs={'rows': '3'}),
+            'text_color': TextInput(attrs={"type": "color"}),
         }
 
 
